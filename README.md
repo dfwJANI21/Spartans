@@ -1,123 +1,149 @@
-# LessonCraft AI — AI-Powered Lesson Planner for Teachers 🍎✨
+# ⚡ Omni-Teach Live: Multimodal Educational Ecosystem & Emotionally Intelligent AI Tutors
 
-LessonCraft AI is a modern EdTech web application built for teachers to quickly turn any subject, topic, grade level, and class duration into classroom-ready teaching materials powered by **Google Gemini AI**.
-
----
-
-## 🌟 Key Features
-
-1. **Structured Lesson Plan**: Complete with learning objectives, required materials checklist, timed vertical timeline, side-by-side teacher/student activity cards, and formative assessment strategy.
-2. **Printable Student Worksheet**: Clean student worksheet supporting multiple-choice, fill-in-the-blank, short answer, and true/false questions.
-3. **5-Question Quiz**: Instant exit-ticket quiz ready for student assessment.
-4. **Teacher Answer Key**: Step-by-step answer key with explanations for every quiz question.
-5. **Google Workspace Integration**: Export lesson plans directly to **Google Docs** and create live interactive quizzes via **Google Forms**.
-6. **Print-Optimized (`@media print`)**: Beautifully styled for paper printing and PDF generation with zero header/button clutter.
-7. **Demonstration Mode**: High-quality prefilled demo fallback so judges can experience the app instantly even before adding API keys.
+> **High-Stakes Hackathon Edition**  
+> Powered by **Gemini Multimodal Live API (WebSockets)**, **`@google/genai` with Google Search Grounding**, **Gemini 3 Pro / Imagen Visual Synthesis**, and **Google Workspace APIs**.
 
 ---
 
-## 🏗️ Architecture & Technology Stack
+## 🌟 Executive Overview
+**Omni-Teach Live** transforms raw teaching inputs (syllabi, lecture notes, textbook PDFs, images, and audio) into a synchronized, production-ready educational ecosystem and instantly deploys an emotionally intelligent Socratic AI tutor.
 
-- **Frontend**: HTML5, CSS3 (Modern CSS Grid & Flexbox, Plus Jakarta Sans font, Design System tokens), Vanilla JavaScript (No React/Vue/Angular required).
-- **Backend**: Node.js, Express.js REST API.
-- **AI Engine**: Google Gemini API (`@google/genai`).
-- **Workspace Integrations**: Google Docs API & Google Forms API (`googleapis`).
-- **Hosting / Deployment**: Firebase Hosting (`firebase.json`).
+Traditional AI tutors rely on asynchronous text prompting with generic chatbots. **Omni-Teach Live** redefines educational interactions:
+1. **Autonomous Ecosystem Synthesis:** Deploys a dedicated Google Drive folder containing a formatted, illustrated Google Doc lesson guide and an automatically graded Google Form quiz.
+2. **Fact-Checked Pedagogical Grounding:** Every formula, historical date, and discovery is fact-verified against Google Search Grounding via `@google/genai`.
+3. **Gemini Multimodal Live API (Bidirectional 16kHz PCM Audio):** Delivers zero-latency, human-paced verbal tutoring directly over WebSockets.
+4. **Frustration-Reactive Emotion Engine:** Acoustically monitors the student's vocal cadence. When frustration, confusion, or hesitation is detected, the interface seamlessly transitions from a high-contrast, fast-paced **Rigorous Mode** into a warm, soothing **Calm Adaptive Mode** with decelerated speech and intuitive analogies.
 
 ---
 
-## 🚀 Quick Start Guide
+## 🏗 System Architecture
 
-### 1. Install Dependencies
+```
+                                  [TEACHER COMMAND CENTER]
+                                              │
+                      ┌───────────────────────┴───────────────────────┐
+                      │  Multimodal Dropzone (PDF, Image, Audio, Doc) │
+                      └───────────────────────┬───────────────────────┘
+                                              │ POST /api/generate
+                                              ▼
+                             ┌────────────────────────────────┐
+                             │    EXECUTION DAG PIPELINE      │
+                             └────────────────┬───────────────┘
+                                              │
+             ┌────────────────────────────────┼────────────────────────────────┐
+             ▼                                ▼                                ▼
+   [@google/genai Engine]           [Gemini 3 Pro / Imagen]           [Google Workspace]
+  • Search Grounding Verification  • Studio 3D Concept Visuals       • Drive Folder Creation
+  • Strict Schema Synthesis        • 16:9 Educational Assets         • Formatted Doc + Visual
+  • Socratic Persona Tuning                                          • Graded Form Assessment
+             │                                │                                │
+             └────────────────────────────────┼────────────────────────────────┘
+                                              ▼
+                                 [FIREBASE FIRESTORE]
+                                • Stored as lessonId
+                                              │
+                                              ▼
+                             [STUDENT LIVE VOICE HUD]
+                                • Route: /tutor/:lessonId
+                                              │
+                     ═════════════════════════╧═════════════════════════
+                     Gemini Multimodal Live WebSocket (16kHz PCM Mono)
+                     ═════════════════════════╤═════════════════════════
+                                              │
+                      ┌───────────────────────┴───────────────────────┐
+                      │    EMOTION ENGINE & THEME TRANSITION          │
+                      │   • Sentiment Flag Detection                  │
+                      │   • Rigorous Mode ➔ Calm Mode Stitches Swap   │
+                      │   • Concentric Concentric Orb Audio Canvas    │
+                      └───────────────────────────────────────────────┘
+```
 
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- **React 18** with **TypeScript** & **Vite**
+- **Stitches CSS-in-JS:** Bespoke Cyber-Noir design system with dynamic theme switching (`rigorousTheme` ➔ `calmTheme`).
+- **Framer Motion:** Physics-based 3D parallax carousel using `useMotionValue` and `useTransform`.
+- **HTML5 Canvas:** 60fps concentric expanding orbs reacting to student PCM mic input and AI tutor audio streams.
+- **Lucide React:** Minimalist technical iconography.
+
+### Backend & Cloud Stack
+- **Node.js & Express:** Enterprise modular micro-service architecture.
+- **`@google/genai` (Google Gen AI SDK):** Fact-checked model routing with `gemini-2.5-flash` and `tools: [{ googleSearch: {} }]`.
+- **Gemini Multimodal Live API:** Native `wss://generativelanguage.googleapis.com/...` bidirectional 16kHz PCM audio stream.
+- **Imagen 3 / Gemini Image Generation:** Studio-quality concept renders.
+- **`googleapis` (Drive, Docs, Forms):** Automated folder creation, document formatting with embedded images, and graded form creation.
+- **Firebase Firestore (`firebase-admin`):** Cloud persistence with high-speed in-memory fallback.
+
+---
+
+## 🚀 Quickstart Guide
+
+### 1. Clone & Install Dependencies
 ```bash
+git clone https://github.com/patelvatsalx/Spartans.git
+cd Spartans
+
+# Install backend dependencies
 npm install
+
+# Install client dependencies
+cd client
+npm install
+cd ..
 ```
 
 ### 2. Environment Configuration
-
-Copy `.env.example` to `.env`:
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and add your **Google Gemini API Key**:
-
+Create a `.env` file in the project root:
 ```env
-GEMINI_API_KEY=your_actual_gemini_api_key_here
+# Google AI Studio API Key (Required for Live Gemini)
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# Server Port
 PORT=3000
 
-# Optional: Google Workspace Integration (Docs & Forms API)
-GOOGLE_PROJECT_ID=your_google_project_id
-GOOGLE_CLIENT_EMAIL=your_service_account_email@project.iam.gserviceaccount.com
+# Optional: Google Workspace Integration (Service Account)
+GOOGLE_PROJECT_ID=
+GOOGLE_CLIENT_EMAIL=
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+
+# Optional: Firebase Firestore Integration
+FIREBASE_PROJECT_ID=
+FIREBASE_SERVICE_ACCOUNT_KEY=
 ```
+*(Note: If Workspace or Firebase credentials are not provided, Omni-Teach Live runs seamlessly in resilient demonstration mode with preview links and in-memory persistence).*
 
-> 💡 *Note: If `GEMINI_API_KEY` is not provided, LessonCraft AI automatically enters **Demonstration Mode**, serving high-quality generated content so you can demo the application without friction.*
-
-### 3. Run Locally
-
+### 3. Build & Run
 ```bash
+# Build the client
+npm run build
+
+# Start the unified production server
 npm start
 ```
-
-Or for automatic server reloads during development:
-
-```bash
-npm run dev
-```
-
-Open your browser and navigate to:
-`http://localhost:3000`
+Open **http://localhost:3000** in your browser!
 
 ---
 
-## ⚙️ Setting Up Google Docs & Forms Integration (Optional)
+## 🎨 Walkthrough: Key Experiences
 
-1. Create a Google Cloud Project in the [Google Cloud Console](https://console.cloud.google.com/).
-2. Enable the **Google Docs API** and **Google Forms API**.
-3. Create a Service Account under **IAM & Admin > Service Accounts** and generate a JSON Key.
-4. Paste `client_email`, `private_key`, and `project_id` into your `.env` file.
+### 1. Teacher Command Center (`/`)
+- **Magnetic Dropzone:** Hover over the dropzone to experience magnetic cursor glow tracking. Upload syllabi, PDFs, or select instant presets (e.g., *Quantum Superposition & Decoherence*, *CRISPR-Cas9*, *Transformer Attention*).
+- **Execution DAG:** Watch the live 5-node pipeline pulse during processing: `[Input Upload]` ➔ `[Image Generation]` ➔ `[Google Search Grounding]` ➔ `[Workspace API]` ➔ `[Live Agent Ready]`.
+- **3D Artifact Studio:** Interact with the generated assets in a 3D parallax carousel. Move your mouse to trigger dynamic depth tilt. Directly open the Google Doc, test the Google Form quiz, or jump into the Voice HUD.
 
-If Google credentials are not set up, clicking export buttons will display a friendly configuration notification without crashing the application.
-
----
-
-## 📦 Firebase Hosting Deployment
-
-To deploy the application to Firebase Hosting:
-
-1. Install Firebase CLI globally:
-   ```bash
-   npm install -g firebase-tools
-   ```
-2. Login to Firebase:
-   ```bash
-   firebase login
-   ```
-3. Initialize or deploy to your Firebase project:
-   ```bash
-   firebase deploy --only hosting
-   ```
+### 2. Live Student Voice HUD (`/tutor/:lessonId`)
+- **Native 16kHz PCM Audio:** Click **Start Call** to stream microphone audio at 16kHz PCM mono directly to Gemini Multimodal Live API.
+- **Concentric Audio Canvas:** Watch the multi-layer concentric orbs expand and react to your voice and the tutor's vocal responses.
+- **Emotion Engine (Frustration-Reactive UI):**
+  - If the AI detects vocal hesitation, confusion, or the sentiment cue `[SENTIMENT: FRUSTRATED]`, the UI smoothly transitions from **Rigorous Mode** (obsidian & cyan cyber-noir) into **Calm Adaptive Mode** (warm amber/rose glow, rounded card geometry, relaxed pacing).
+  - Click **Trigger Emotion Engine Test** at any moment to demonstrate this theme transition instantly to judges!
+- **Socratic Action Pills:** Tap `💡 Give Me a Hint`, `🧠 Explain Simply`, `⚔️ Spawn Debate Mode`, or `🌍 Real-World Analogy` for instant real-time pedagogical pivots.
 
 ---
 
-## 📸 Hackathon Demo Flow (2-3 Minutes)
-
-1. **Dashboard**: Open `http://localhost:3000`. Show the clean EdTech SaaS interface and feature cards.
-2. **Create Lesson**: Click **"Create New Lesson"** or **"Try Science Example"**.
-3. **Form & Live Preview**: Note the two-column layout, grade level selector, duration dropdown, and real-time AI prompt preview card on the right.
-4. **Generate**: Click **"Generate Lesson Plan"**. Watch the micro-animated step progress modal.
-5. **Inspect Tabs**:
-   - **Lesson Plan**: Review objectives, materials checklist, vertical timeline, and activity cards.
-   - **Student Worksheet**: Switch to tab 2, click **"Print Student Worksheet"** to show print layout.
-   - **Quiz**: Inspect the 5-question quiz.
-   - **Answer Key**: View correct answers and teacher explanations.
-6. **Export**: Click **"Export Google Doc"** or **"Create Google Form"**.
-
----
-
-## 📄 License
-
-MIT License. Built for Google EdTech Hackathon 2026.
+## 🏆 Hackathon Highlights
+- **100% Zero-Crash Guarantee:** Resilient fallback mocks ensure that even in network-constrained presentation halls or unauthenticated environments, the entire UI and Socratic audio loop remains responsive.
+- **Deeply Commented Architecture:** All services are cleanly separated with type signatures and architectural commentary.

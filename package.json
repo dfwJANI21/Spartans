@@ -1,28 +1,38 @@
 {
-  "name": "lessoncraft-ai",
-  "version": "1.0.0",
-  "description": "AI-Powered Lesson Planner for Teachers built with Google Gemini API and Google Workspace",
+  "name": "omni-teach-live",
+  "version": "2.0.0",
+  "description": "Multimodal Educational Ecosystem & Emotionally Intelligent Socratic Voice Tutors powered by Gemini Multimodal Live API",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "nodemon server/server.js"
+    "dev:server": "node server/server.js",
+    "dev:client": "npm run dev --prefix client",
+    "build:client": "npm run build --prefix client",
+    "build": "npm run build --prefix client"
   },
   "keywords": [
     "education",
-    "lesson-planner",
-    "gemini-api",
-    "express",
-    "google-docs",
-    "google-forms"
+    "omni-teach",
+    "gemini-live-api",
+    "socratic-tutor",
+    "google-genai",
+    "google-workspace",
+    "websockets",
+    "framer-motion",
+    "stitches"
   ],
-  "author": "LessonCraft AI Team",
+  "author": "Omni-Teach Hackathon Team",
   "license": "MIT",
   "dependencies": {
+    "@google/genai": "^0.1.2",
     "@google/generative-ai": "^0.21.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "googleapis": "^140.0.0"
+    "firebase-admin": "^12.6.0",
+    "googleapis": "^140.0.0",
+    "multer": "^1.4.5-lts.1",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
