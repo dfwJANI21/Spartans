@@ -31,7 +31,7 @@ const CanvasContainer = styled('div', {
 const StyledCanvas = styled('canvas', {
   width: '100%',
   height: '100%',
-  filter: 'drop-shadow(0 0 28px rgba(0, 242, 254, 0.3))',
+  filter: 'drop-shadow(0 0 28px rgba(124, 154, 109, 0.25))',
   transition: 'filter 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
 });
 
@@ -41,17 +41,18 @@ const AmbientStatusPill = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  padding: '6px 16px',
+  padding: '8px 18px',
   borderRadius: '9999px',
-  background: 'rgba(9, 12, 21, 0.82)',
+  background: 'rgba(255, 255, 255, 0.94)',
   backdropFilter: 'blur(16px)',
-  border: '1px solid rgba(255, 255, 255, 0.12)',
-  fontFamily: '$mono',
-  fontSize: '0.75rem',
-  letterSpacing: '0.06em',
+  border: '1px solid #e5dfd3',
+  fontFamily: '$sans',
+  fontWeight: 600,
+  fontSize: '0.76rem',
+  letterSpacing: '0.04em',
   textTransform: 'uppercase',
-  color: '$textSecondary',
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+  color: '$textPrimary',
+  boxShadow: '0 4px 16px rgba(70, 55, 40, 0.08)',
   zIndex: 2,
   transition: 'all 0.3s ease'
 });
@@ -63,10 +64,10 @@ const StatusDot = styled('span', {
   transition: 'all 0.3s ease',
   variants: {
     state: {
-      idle: { backgroundColor: '#64748B' },
-      studentSpeaking: { backgroundColor: '$accentCyan', boxShadow: '0 0 12px $accentCyan' },
-      aiSpeaking: { backgroundColor: '#A855F7', boxShadow: '0 0 16px #A855F7' },
-      calmMode: { backgroundColor: '#FF9E64', boxShadow: '0 0 16px #FF9E64' }
+      idle: { backgroundColor: '#a89f91' },
+      studentSpeaking: { backgroundColor: '$accentSage', boxShadow: '0 0 10px $accentSage' },
+      aiSpeaking: { backgroundColor: '$accentGold', boxShadow: '0 0 14px $accentGold' },
+      calmMode: { backgroundColor: '$accentSageDeep', boxShadow: '0 0 14px $accentSageDeep' }
     }
   }
 });
@@ -154,11 +155,11 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
       phaseRef.current += 0.024 + energy * 0.04;
       ctx.clearRect(0, 0, width, height);
 
-      // Mode-based palette interpolation
+      // Serenity sound-bath aura: Sage [124, 154, 109], Forest [95, 125, 82], Gold [212, 185, 150]
       const isCalm = sentiment === 'calm';
-      const cPrimary = isCalm ? [255, 158, 100] : [0, 242, 254];
-      const cSecondary = isCalm ? [251, 113, 133] : [99, 102, 241];
-      const cCore = isCalm ? [255, 245, 234] : [248, 250, 252];
+      const cPrimary = isCalm ? [124, 154, 109] : [95, 125, 82];
+      const cSecondary = isCalm ? [212, 185, 150] : [212, 185, 150];
+      const cCore = isCalm ? [251, 249, 244] : [255, 255, 255];
 
       const baseRadius = Math.min(width, height) * 0.18 * (1 + energy * 0.35);
 
@@ -199,7 +200,7 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
       const layers = [
         { color: cPrimary, scale: 1.0, freq: 3, ampMultiplier: 1.0, phaseOffset: 0 },
         { color: cSecondary, scale: 1.15, freq: 5, ampMultiplier: 0.85, phaseOffset: Math.PI / 3 },
-        { color: [255, 255, 255], scale: 1.28, freq: 7, ampMultiplier: 0.65, phaseOffset: Math.PI / 2 }
+        { color: [212, 185, 150], scale: 1.28, freq: 7, ampMultiplier: 0.65, phaseOffset: Math.PI / 2 }
       ];
 
       layers.forEach((l, layerIdx) => {
@@ -256,8 +257,8 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
       coreGradient.addColorStop(1, `rgba(${cSecondary[0]}, ${cSecondary[1]}, ${cSecondary[2]}, 0.5)`);
 
       ctx.fillStyle = coreGradient;
-      ctx.shadowColor = isCalm ? '#FF9E64' : '#00F2FE';
-      ctx.shadowBlur = isLive ? 30 + energy * 40 : 12;
+      ctx.shadowColor = isCalm ? '#d4b996' : '#7c9a6d';
+      ctx.shadowBlur = isLive ? 24 + energy * 30 : 10;
       ctx.fill();
       ctx.shadowBlur = 0; // Reset
 

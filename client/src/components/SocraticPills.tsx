@@ -19,11 +19,11 @@ const PillsContainer = styled('div', {
 });
 
 const PillButton = styled(motion.button, {
-  background: 'rgba(255, 255, 255, 0.04)',
-  border: '1px solid $borderGlass',
+  background: '#ffffff',
+  border: '1px solid #e5dfd3',
   borderRadius: '9999px',
-  padding: '9px 18px',
-  fontSize: '0.85rem',
+  padding: '10px 20px',
+  fontSize: '0.86rem',
   fontFamily: '$sans',
   fontWeight: 600,
   color: '$textPrimary',
@@ -31,14 +31,14 @@ const PillButton = styled(motion.button, {
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.25)',
-  transition: 'border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease',
+  boxShadow: '0 2px 10px rgba(70, 55, 40, 0.05)',
+  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
 
   '&:hover': {
-    borderColor: '$borderGlassHover',
-    backgroundColor: 'rgba(0, 242, 254, 0.1)',
-    color: '$accentCyan',
-    boxShadow: '$cyberGlow'
+    borderColor: '$accentSage',
+    backgroundColor: 'rgba(124, 154, 109, 0.08)',
+    color: '$accentSageDeep',
+    boxShadow: '0 4px 14px rgba(124, 154, 109, 0.18)'
   },
 
   '&:disabled': {
@@ -51,23 +51,23 @@ const PillButton = styled(motion.button, {
     intent: {
       hint: {
         '&:hover': {
-          borderColor: '$accentAmber',
-          color: '$accentAmber',
-          backgroundColor: 'rgba(245, 158, 11, 0.1)'
+          borderColor: '$accentGold',
+          color: '$accentWalnut',
+          backgroundColor: 'rgba(212, 185, 150, 0.15)'
         }
       },
       debate: {
         '&:hover': {
           borderColor: '$accentRose',
           color: '$accentRose',
-          backgroundColor: 'rgba(244, 63, 94, 0.1)'
+          backgroundColor: 'rgba(194, 125, 96, 0.12)'
         }
       },
       simple: {
         '&:hover': {
-          borderColor: '$accentEmerald',
-          color: '$accentEmerald',
-          backgroundColor: 'rgba(16, 185, 129, 0.1)'
+          borderColor: '$accentSage',
+          color: '$accentSageDeep',
+          backgroundColor: 'rgba(124, 154, 109, 0.12)'
         }
       }
     }

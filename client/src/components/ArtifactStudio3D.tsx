@@ -68,7 +68,7 @@ const TabPill = styled('button', {
   variants: {
     active: {
       true: {
-        color: '$accentCyan'
+        color: '$accentSageDeep'
       }
     }
   },
@@ -82,9 +82,9 @@ const ActiveTabGlider = styled(motion.div, {
   position: 'absolute',
   inset: 0,
   borderRadius: '10px',
-  backgroundColor: 'rgba(0, 242, 254, 0.14)',
-  border: '1px solid rgba(0, 242, 254, 0.45)',
-  boxShadow: '0 0 20px rgba(0, 242, 254, 0.25)',
+  backgroundColor: 'rgba(124, 154, 109, 0.12)',
+  border: '1px solid rgba(124, 154, 109, 0.35)',
+  boxShadow: '0 4px 15px rgba(124, 154, 109, 0.15)',
   zIndex: 0
 });
 
@@ -105,7 +105,7 @@ const CardOuter = styled(motion.div, {
   padding: '1px',
   overflow: 'hidden',
   transformStyle: 'preserve-3d',
-  boxShadow: '0 24px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 242, 254, 0.12)'
+  boxShadow: '0 24px 60px rgba(70, 55, 40, 0.12), 0 0 35px rgba(124, 154, 109, 0.1)'
 });
 
 const SpecularLightBorder = styled(motion.div, {
@@ -120,21 +120,22 @@ const Card3DInner = styled('div', {
   position: 'relative',
   zIndex: 1,
   borderRadius: '23px',
-  backgroundColor: 'rgba(11, 15, 27, 0.92)',
+  backgroundColor: '#ffffff',
   backdropFilter: 'blur(28px)',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  transformStyle: 'preserve-3d'
+  transformStyle: 'preserve-3d',
+  border: '1px solid #e5dfd3'
 });
 
 const CardHeader = styled('div', {
   padding: '26px 34px',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+  borderBottom: '1px solid #e5dfd3',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  background: 'linear-gradient(90deg, rgba(0, 242, 254, 0.08) 0%, transparent 100%)',
+  background: 'linear-gradient(90deg, rgba(124, 154, 109, 0.08) 0%, transparent 100%)',
   transform: 'translateZ(25px)'
 });
 
@@ -152,9 +153,9 @@ const ImageBanner = styled('div', {
   borderRadius: '14px',
   overflow: 'hidden',
   position: 'relative',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  border: '1px solid #e5dfd3',
   transform: 'translateZ(30px)',
-  boxShadow: '0 12px 30px rgba(0, 0, 0, 0.4)',
+  boxShadow: '0 8px 24px rgba(70, 55, 40, 0.1)',
 
   '& img': {
     width: '100%',
@@ -168,17 +169,18 @@ const ImageBadge = styled('div', {
   bottom: '12px',
   left: '12px',
   padding: '6px 14px',
-  borderRadius: '8px',
-  backgroundColor: 'rgba(9, 12, 21, 0.88)',
+  borderRadius: '9999px',
+  backgroundColor: 'rgba(255, 255, 255, 0.94)',
   backdropFilter: 'blur(12px)',
-  fontFamily: '$mono',
+  fontFamily: '$sans',
+  fontWeight: 600,
   fontSize: '0.75rem',
-  color: '$accentCyan',
-  border: '1px solid rgba(0, 242, 254, 0.35)',
+  color: '$accentSageDeep',
+  border: '1px solid #e5dfd3',
   display: 'flex',
   alignItems: 'center',
   gap: '6px',
-  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.5)'
+  boxShadow: '0 4px 14px rgba(70, 55, 40, 0.1)'
 });
 
 const ActionButton = styled(motion.a, {
@@ -186,24 +188,25 @@ const ActionButton = styled(motion.a, {
   alignItems: 'center',
   gap: '8px',
   padding: '12px 24px',
-  borderRadius: '12px',
+  borderRadius: '9999px',
   fontFamily: '$sans',
-  fontSize: '0.9rem',
-  fontWeight: 700,
+  fontSize: '0.88rem',
+  fontWeight: 600,
   textDecoration: 'none',
   cursor: 'pointer',
   transform: 'translateZ(55px)',
+  transition: 'all 0.25s ease',
 
   variants: {
     variant: {
       primary: {
-        background: 'linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%)',
-        color: '#090C15',
-        boxShadow: '0 0 24px rgba(0, 242, 254, 0.4)'
+        background: 'linear-gradient(135deg, #7c9a6d 0%, #5f7d52 100%)',
+        color: '#ffffff',
+        boxShadow: '0 6px 20px rgba(124, 154, 109, 0.4)'
       },
       secondary: {
-        background: 'rgba(255, 255, 255, 0.06)',
-        border: '1px solid rgba(255, 255, 255, 0.18)',
+        background: '#fbf9f4',
+        border: '1px solid #e5dfd3',
         color: '$textPrimary'
       }
     }
@@ -215,16 +218,16 @@ const ActionButtonEl = styled(motion.button, {
   alignItems: 'center',
   gap: '8px',
   padding: '12px 24px',
-  borderRadius: '12px',
+  borderRadius: '9999px',
   fontFamily: '$sans',
-  fontSize: '0.9rem',
-  fontWeight: 700,
+  fontSize: '0.88rem',
+  fontWeight: 600,
   border: 'none',
   cursor: 'pointer',
   transform: 'translateZ(55px)',
-  background: 'linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%)',
-  color: '#090C15',
-  boxShadow: '0 0 24px rgba(0, 242, 254, 0.4)'
+  background: 'linear-gradient(135deg, #7c9a6d 0%, #5f7d52 100%)',
+  color: '#ffffff',
+  boxShadow: '0 6px 20px rgba(124, 154, 109, 0.4)'
 });
 
 interface ArtifactStudio3DProps {
@@ -317,17 +320,17 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
             >
               <SpecularLightBorder
                 style={{
-                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(0, 242, 254, 0.4) 0%, rgba(79, 172, 254, 0.1) 40%, transparent 70%)'
+                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(124, 154, 109, 0.35) 0%, rgba(212, 185, 150, 0.15) 40%, transparent 70%)'
                 }}
               />
               <Card3DInner>
 
               <CardHeader>
                 <div>
-                  <div style={{ fontFamily: 'Syne', fontSize: '1.25rem', fontWeight: 700, color: '#F8FAFC' }}>
+                  <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 600, color: '#2e2a24' }}>
                     {lesson.lessonTitle || 'Multimodal Lesson Plan'}
                   </div>
-                  <div style={{ fontSize: '0.8rem', color: '#94A3B8', marginTop: '4px' }}>
+                  <div style={{ fontSize: '0.85rem', color: '#6b6357', marginTop: '4px' }}>
                     {lesson.subject} • {lesson.grade}
                   </div>
                 </div>
@@ -352,23 +355,23 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
                 )}
 
                 <div>
-                  <h4 style={{ color: '#00F2FE', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', marginBottom: '8px' }}>
-                    EXECUTIVE SUMMARY
+                  <h4 style={{ color: '#5f7d52', fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '8px' }}>
+                    Executive Summary
                   </h4>
-                  <p style={{ color: '#E2E8F0', fontSize: '0.92rem', lineHeight: 1.6 }}>
+                  <p style={{ color: '#2e2a24', fontSize: '0.95rem', lineHeight: 1.65 }}>
                     {lesson.summary}
                   </p>
                 </div>
 
                 {docContent.learningObjectives && (
                   <div>
-                    <h4 style={{ color: '#00F2FE', fontFamily: 'JetBrains Mono', fontSize: '0.85rem', marginBottom: '8px' }}>
-                      CORE OBJECTIVES
+                    <h4 style={{ color: '#5f7d52', fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '8px' }}>
+                      Core Objectives
                     </h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       {docContent.learningObjectives.map((obj: string, i: number) => (
-                        <div key={i} style={{ fontSize: '0.88rem', color: '#94A3B8', display: 'flex', gap: '8px' }}>
-                          <span style={{ color: '#00F2FE' }}>[{i + 1}]</span>
+                        <div key={i} style={{ fontSize: '0.9rem', color: '#4a4237', display: 'flex', gap: '8px' }}>
+                          <span style={{ color: '#7c9a6d', fontWeight: 600 }}>[{i + 1}]</span>
                           <span>{obj}</span>
                         </div>
                       ))}
@@ -391,16 +394,16 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
             >
               <SpecularLightBorder
                 style={{
-                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(16, 185, 129, 0.4) 0%, rgba(0, 242, 254, 0.1) 40%, transparent 70%)'
+                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(212, 185, 150, 0.4) 0%, rgba(124, 154, 109, 0.15) 40%, transparent 70%)'
                 }}
               />
               <Card3DInner>
                 <CardHeader>
                   <div>
-                    <div style={{ fontFamily: 'Syne', fontSize: '1.25rem', fontWeight: 700, color: '#F8FAFC' }}>
+                    <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 600, color: '#2e2a24' }}>
                       Graded Diagnostic & Socratic Check
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: '#94A3B8', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.85rem', color: '#6b6357', marginTop: '4px' }}>
                       Self-grading Google Form with pedagogical explanations
                     </div>
                   </div>
@@ -422,13 +425,13 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
                       <div
                         key={idx}
                         style={{
-                          padding: '18px',
-                          borderRadius: '12px',
-                          backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                          border: '1px solid rgba(255, 255, 255, 0.08)'
+                          padding: '20px',
+                          borderRadius: '16px',
+                          backgroundColor: '#fbf9f4',
+                          border: '1px solid #e5dfd3'
                         }}
                       >
-                        <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#F8FAFC', marginBottom: '12px' }}>
+                        <div style={{ fontSize: '0.98rem', fontWeight: 600, color: '#2e2a24', marginBottom: '12px' }}>
                           {idx + 1}. {q.question}
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
@@ -436,12 +439,13 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
                             <div
                               key={optIdx}
                               style={{
-                                padding: '8px 12px',
-                                borderRadius: '8px',
-                                fontSize: '0.82rem',
-                                backgroundColor: optIdx === q.correctIndex ? 'rgba(16, 185, 129, 0.15)' : 'rgba(0, 0, 0, 0.3)',
-                                border: optIdx === q.correctIndex ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid rgba(255, 255, 255, 0.05)',
-                                color: optIdx === q.correctIndex ? '#10B981' : '#94A3B8'
+                                padding: '10px 14px',
+                                borderRadius: '10px',
+                                fontSize: '0.85rem',
+                                backgroundColor: optIdx === q.correctIndex ? 'rgba(124, 154, 109, 0.16)' : '#ffffff',
+                                border: optIdx === q.correctIndex ? '1px solid #7c9a6d' : '1px solid #e5dfd3',
+                                color: optIdx === q.correctIndex ? '#5f7d52' : '#6b6357',
+                                fontWeight: optIdx === q.correctIndex ? 600 : 400
                               }}
                             >
                               {opt} {optIdx === q.correctIndex && '✓ (Key)'}
@@ -449,8 +453,8 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
                           ))}
                         </div>
                         {q.explanation && (
-                          <div style={{ marginTop: '10px', fontSize: '0.8rem', color: '#64748B', fontStyle: 'italic' }}>
-                            Rationale: {q.explanation}
+                          <div style={{ marginTop: '12px', fontSize: '0.82rem', color: '#8b6b4a', fontStyle: 'italic' }}>
+                            Pedagogical Rationale: {q.explanation}
                           </div>
                         )}
                       </div>
@@ -472,16 +476,16 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
             >
               <SpecularLightBorder
                 style={{
-                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(245, 158, 11, 0.35) 0%, rgba(0, 242, 254, 0.1) 40%, transparent 70%)'
+                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(212, 185, 150, 0.35) 0%, rgba(124, 154, 109, 0.15) 40%, transparent 70%)'
                 }}
               />
               <Card3DInner>
                 <CardHeader>
                   <div>
-                    <div style={{ fontFamily: 'Syne', fontSize: '1.25rem', fontWeight: 700, color: '#F8FAFC' }}>
+                    <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 600, color: '#2e2a24' }}>
                       Google Drive Cloud Architecture
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: '#94A3B8', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.85rem', color: '#6b6357', marginTop: '4px' }}>
                       Synchronized repository for documents, student quiz submissions & visual assets
                     </div>
                   </div>
@@ -499,20 +503,20 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
 
                 <CardBody>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                    <div style={{ padding: '20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <FileText size={28} color="#00F2FE" />
-                      <h5 style={{ color: '#F8FAFC', margin: '10px 0 4px 0' }}>Teacher & Student Guide</h5>
-                      <p style={{ fontSize: '0.78rem', color: '#64748B' }}>Complete formatted document</p>
+                    <div style={{ padding: '22px', borderRadius: '16px', background: '#fbf9f4', border: '1px solid #e5dfd3' }}>
+                      <FileText size={28} color="#7c9a6d" />
+                      <h5 style={{ color: '#2e2a24', fontFamily: 'Inter, sans-serif', fontWeight: 600, margin: '10px 0 4px 0' }}>Teacher & Student Guide</h5>
+                      <p style={{ fontSize: '0.82rem', color: '#6b6357' }}>Complete formatted document</p>
                     </div>
-                    <div style={{ padding: '20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <CheckSquare size={28} color="#10B981" />
-                      <h5 style={{ color: '#F8FAFC', margin: '10px 0 4px 0' }}>Formative Quiz Assessment</h5>
-                      <p style={{ fontSize: '0.78rem', color: '#64748B' }}>Self-grading Google Form</p>
+                    <div style={{ padding: '22px', borderRadius: '16px', background: '#fbf9f4', border: '1px solid #e5dfd3' }}>
+                      <CheckSquare size={28} color="#5f7d52" />
+                      <h5 style={{ color: '#2e2a24', fontFamily: 'Inter, sans-serif', fontWeight: 600, margin: '10px 0 4px 0' }}>Formative Quiz Assessment</h5>
+                      <p style={{ fontSize: '0.82rem', color: '#6b6357' }}>Self-grading Google Form</p>
                     </div>
-                    <div style={{ padding: '20px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <FolderGit2 size={28} color="#F59E0B" />
-                      <h5 style={{ color: '#F8FAFC', margin: '10px 0 4px 0' }}>Synthesized Visual Assets</h5>
-                      <p style={{ fontSize: '0.78rem', color: '#64748B' }}>16:9 Imagen 3 renders</p>
+                    <div style={{ padding: '22px', borderRadius: '16px', background: '#fbf9f4', border: '1px solid #e5dfd3' }}>
+                      <FolderGit2 size={28} color="#d4b996" />
+                      <h5 style={{ color: '#2e2a24', fontFamily: 'Inter, sans-serif', fontWeight: 600, margin: '10px 0 4px 0' }}>Synthesized Visual Assets</h5>
+                      <p style={{ fontSize: '0.82rem', color: '#6b6357' }}>16:9 Imagen 3 renders</p>
                     </div>
                   </div>
                 </CardBody>
@@ -531,16 +535,16 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
             >
               <SpecularLightBorder
                 style={{
-                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(0, 242, 254, 0.45) 0%, rgba(168, 85, 247, 0.15) 40%, transparent 70%)'
+                  background: 'radial-gradient(circle 380px at 50% 50%, rgba(124, 154, 109, 0.4) 0%, rgba(212, 185, 150, 0.2) 40%, transparent 70%)'
                 }}
               />
               <Card3DInner>
                 <CardHeader>
                   <div>
-                    <div style={{ fontFamily: 'Syne', fontSize: '1.25rem', fontWeight: 700, color: '#F8FAFC' }}>
-                      Live Socratic Agent Launchpad
+                    <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', fontWeight: 600, color: '#2e2a24' }}>
+                      Live Socratic Agent Sanctuary
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: '#94A3B8', marginTop: '4px' }}>
+                    <div style={{ fontSize: '0.85rem', color: '#6b6357', marginTop: '4px' }}>
                       Gemini Multimodal Live API Voice Stream with Emotional Pacing
                     </div>
                   </div>
@@ -549,26 +553,26 @@ export const ArtifactStudio3D: React.FC<ArtifactStudio3DProps> = ({ lesson, onLa
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.96 }}
                   >
-                    <Headphones size={18} /> Launch Student Voice HUD
+                    <Headphones size={18} /> Launch Student Voice Sanctuary
                   </ActionButtonEl>
                 </CardHeader>
 
                 <CardBody>
-                  <div style={{ padding: '24px', borderRadius: '16px', backgroundColor: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.2)' }}>
+                  <div style={{ padding: '26px', borderRadius: '18px', backgroundColor: 'rgba(124, 154, 109, 0.08)', border: '1px solid rgba(124, 154, 109, 0.25)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-                      <Award size={20} color="#00F2FE" />
-                      <h4 style={{ fontFamily: 'Syne', color: '#F8FAFC', fontSize: '1.1rem' }}>
-                        Socratic Agent Grounding Profile
+                      <Award size={22} color="#7c9a6d" />
+                      <h4 style={{ fontFamily: 'Cormorant Garamond, serif', color: '#2e2a24', fontSize: '1.3rem', fontWeight: 600 }}>
+                        Socratic Mentor Sanctuary Profile
                       </h4>
                     </div>
-                    <p style={{ color: '#94A3B8', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '16px' }}>
-                      {lesson.socraticTutorProfile?.persona || 'World-class Socratic mentor grounded in curriculum.'}
+                    <p style={{ color: '#4a4237', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '16px' }}>
+                      {lesson.socraticTutorProfile?.persona || 'World-class Socratic mentor grounded in mindful pedagogy.'}
                     </p>
-                    <div style={{ padding: '14px 18px', borderRadius: '10px', backgroundColor: 'rgba(9, 12, 21, 0.7)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                      <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.75rem', color: '#00F2FE', marginBottom: '4px' }}>
-                        FIRST SOCRATIC QUESTION
+                    <div style={{ padding: '16px 20px', borderRadius: '12px', backgroundColor: '#ffffff', border: '1px solid #e5dfd3' }}>
+                      <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', fontWeight: 600, color: '#5f7d52', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '4px' }}>
+                        First Socratic Inquiry
                       </div>
-                      <div style={{ color: '#E2E8F0', fontStyle: 'italic', fontSize: '0.92rem' }}>
+                      <div style={{ color: '#2e2a24', fontStyle: 'italic', fontSize: '0.95rem', lineHeight: 1.5 }}>
                         "{lesson.socraticTutorProfile?.firstQuestion}"
                       </div>
                     </div>

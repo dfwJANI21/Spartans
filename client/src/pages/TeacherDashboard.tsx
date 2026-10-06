@@ -33,30 +33,33 @@ const Badge = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '8px',
-  padding: '6px 14px',
-  borderRadius: '20px',
-  backgroundColor: 'rgba(0, 242, 254, 0.1)',
-  border: '1px solid rgba(0, 242, 254, 0.25)',
-  color: '$accentCyan',
-  fontFamily: '$mono',
+  padding: '7px 18px',
+  borderRadius: '9999px',
+  backgroundColor: 'rgba(124, 154, 109, 0.12)',
+  border: '1px solid rgba(124, 154, 109, 0.3)',
+  color: '$accentSageDeep',
+  fontFamily: '$sans',
   fontSize: '0.8rem',
+  fontWeight: 600,
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase',
   width: 'fit-content'
 });
 
 const HeroTitle = styled('h2', {
   fontFamily: '$display',
-  fontSize: '2.5rem',
-  fontWeight: 800,
+  fontSize: '3.1rem',
+  fontWeight: 600,
   color: '$textPrimary',
   letterSpacing: '-0.02em',
   lineHeight: 1.15
 });
 
 const HeroSub = styled('p', {
-  fontSize: '1.05rem',
+  fontSize: '1.08rem',
   color: '$textSecondary',
   maxWidth: '750px',
-  lineHeight: 1.6
+  lineHeight: 1.65
 });
 
 interface TeacherDashboardProps {
@@ -122,7 +125,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
             particleCount: 80,
             spread: 70,
             origin: { y: 0.6 },
-            colors: ['#00F2FE', '#4FACFE', '#10B981', '#FFFFFF']
+            colors: ['#7c9a6d', '#d4b996', '#5f7d52', '#fbf9f4']
           });
         } catch (e) {}
       } else {
@@ -144,13 +147,13 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
         transition={MOTION_TOKENS.smooth}
       >
         <Badge>
-          <Sparkles size={14} /> Autonomous Multimodal Pedagogy Engine
+          <Sparkles size={14} /> Autonomous Mindful Pedagogy Engine
         </Badge>
         <HeroTitle>
-          Synthesize Raw Curriculum into an <span style={{ color: '#00F2FE' }}>Interactive Ecosystem</span>
+          Synthesize Mindful Knowledge into an <em style={{ fontStyle: 'italic', color: '#7c9a6d' }}>Interactive Sanctuary</em>
         </HeroTitle>
         <HeroSub>
-          Upload lesson materials, course notes, or high-level syllabi. Omni-Teach Live orchestrates Google Search Grounding, Gemini 3 Pro studio visuals, Google Docs & Forms, and spins up a real-time emotionally intelligent Socratic Voice Tutor.
+          Upload lesson materials, course notes, or high-level syllabi. Serenity orchestrates Google Search Grounding, Gemini 3 Pro studio visuals, Google Docs & Forms, and spins up a real-time emotionally intelligent Socratic Voice Sanctuary.
         </HeroSub>
       </HeroSection>
 
@@ -187,12 +190,12 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
             transition={MOTION_TOKENS.spatial}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <Layers size={20} color="#00F2FE" />
-              <h3 style={{ fontFamily: 'Syne', fontSize: '1.4rem', color: '#F8FAFC' }}>
-                3D Artifact Studio & Cloud Deployment
+              <Layers size={20} color="#7c9a6d" />
+              <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.65rem', fontWeight: 600, color: '#2e2a24', margin: 0 }}>
+                Artifact Studio & Educational Sanctuary
               </h3>
             </div>
-            <p style={{ color: '#94A3B8', fontSize: '0.9rem', marginBottom: '16px' }}>
+            <p style={{ color: '#6b6357', fontSize: '0.92rem', marginBottom: '16px' }}>
               Interactive parallax carousel showcasing the live generated curriculum artifacts. Hover over cards for 3D perspective tilt.
             </p>
             <ArtifactStudio3D lesson={activeLesson} onLaunchTutor={onLaunchTutor} />

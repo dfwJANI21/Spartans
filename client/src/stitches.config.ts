@@ -11,36 +11,45 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      bgObsidian: '#090C15',
-      bgCard: 'rgba(13, 17, 30, 0.72)',
-      bgGlass: 'rgba(20, 26, 45, 0.55)',
-      bgGlassHover: 'rgba(30, 41, 69, 0.65)',
-      borderGlass: 'rgba(0, 242, 254, 0.22)',
-      borderGlassHover: 'rgba(0, 242, 254, 0.65)',
-      accentCyan: '#00F2FE',
-      accentBlue: '#4FACFE',
-      accentGlow: 'rgba(0, 242, 254, 0.4)',
-      accentEmerald: '#10B981',
-      accentAmber: '#F59E0B',
-      accentRose: '#F43F5E',
-      textPrimary: '#F8FAFC',
-      textSecondary: '#94A3B8',
-      textMuted: '#64748B',
-      modeIndicator: '#00F2FE',
-      hudGlow: '0 0 25px rgba(0, 242, 254, 0.35)',
-      cardBorderRadius: '12px',
-      transitionSpeed: '0.2s'
+      // Serenity Wellness Spa Core Palette (Alabaster Linen, Sage Green, Champagne Gold, Walnut)
+      bgObsidian: '#fbf9f4',
+      bgLinen: '#fbf9f4',
+      bgCard: '#ffffff',
+      bgGlass: 'rgba(255, 255, 255, 0.88)',
+      bgGlassHover: 'rgba(248, 246, 241, 0.95)',
+      borderGlass: '#e5dfd3',
+      borderGlassHover: '#d4b996',
+      accentCyan: '#7c9a6d', // Serenity Sage
+      accentSage: '#7c9a6d',
+      accentBlue: '#5f7d52', // Deep Forest Sage
+      accentSageDeep: '#5f7d52',
+      accentGlow: 'rgba(124, 154, 109, 0.25)',
+      accentEmerald: '#5f7d52',
+      accentAmber: '#d4b996', // Champagne Gold
+      accentGold: '#d4b996',
+      accentRose: '#c27d60', // Terracotta Warmth
+      accentWalnut: '#8b6b4a',
+      accentEucalyptus: '#9ab88d',
+      textPrimary: '#2e2a24', // Charcoal Espresso
+      textSecondary: '#6b6357', // Muted Earth
+      textMuted: '#968c7e',
+      modeIndicator: '#7c9a6d',
+      hudGlow: '0 0 30px rgba(124, 154, 109, 0.2)',
+      cardBorderRadius: '20px',
+      transitionSpeed: '0.3s'
     },
     fonts: {
-      sans: "'Plus Jakarta Sans', sans-serif",
-      display: "'Syne', sans-serif",
+      sans: "'Inter', system-ui, -apple-system, sans-serif",
+      display: "'Cormorant Garamond', Georgia, serif",
       mono: "'JetBrains Mono', monospace"
     },
     shadows: {
-      cyberGlow: '0 0 30px rgba(0, 242, 254, 0.25)',
-      emeraldGlow: '0 0 30px rgba(16, 185, 129, 0.35)',
-      cardShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
-      buttonGlow: '0 0 16px rgba(0, 242, 254, 0.5)'
+      cyberGlow: '0 10px 30px -10px rgba(124, 154, 109, 0.35)',
+      emeraldGlow: '0 10px 30px -10px rgba(95, 125, 82, 0.35)',
+      cardShadow: '0 20px 40px -15px rgba(70, 55, 40, 0.12)',
+      shadowOrganic: '0 30px 60px -30px rgba(70, 55, 40, 0.22), 0 18px 36px -28px rgba(70, 55, 40, 0.16)',
+      shadowSoft: '0 10px 30px -12px rgba(70, 55, 40, 0.12)',
+      buttonGlow: '0 6px 20px rgba(124, 154, 109, 0.35)'
     }
   },
   utils: {
@@ -54,34 +63,34 @@ export const {
   }
 });
 
-// Frustration-Reactive "Calm" Theme: Warm, soothing, organic breathing curve
+// Frustration-Reactive "Calm Mindful" Theme: Warm Golden Hour & Sandstone Retreat
 export const calmTheme = createTheme('calm-mode', {
   colors: {
-    bgObsidian: '#0E0D14',
-    bgCard: 'rgba(26, 20, 32, 0.78)',
-    bgGlass: 'rgba(38, 28, 48, 0.65)',
-    bgGlassHover: 'rgba(50, 38, 62, 0.75)',
-    borderGlass: 'rgba(255, 158, 100, 0.35)',
-    borderGlassHover: 'rgba(255, 158, 100, 0.75)',
-    accentCyan: '#FF9E64',
-    accentBlue: '#70A288',
-    accentGlow: 'rgba(255, 158, 100, 0.4)',
-    accentEmerald: '#34D399',
-    accentAmber: '#FBBF24',
-    accentRose: '#FB7185',
-    textPrimary: '#FFF7ED',
-    textSecondary: '#E2D5C3',
-    textMuted: '#A89989',
-    modeIndicator: '#FF9E64',
-    hudGlow: '0 0 40px rgba(255, 158, 100, 0.45)',
+    bgObsidian: '#f6f1e7',
+    bgCard: '#fcfbf8',
+    bgGlass: 'rgba(255, 252, 245, 0.92)',
+    bgGlassHover: 'rgba(250, 244, 232, 0.95)',
+    borderGlass: 'rgba(212, 185, 150, 0.55)',
+    borderGlassHover: 'rgba(212, 185, 150, 0.95)',
+    accentCyan: '#d4b996', // Champagne Gold
+    accentBlue: '#8b6b4a', // Walnut
+    accentGlow: 'rgba(212, 185, 150, 0.35)',
+    accentEmerald: '#7c9a6d',
+    accentAmber: '#d4b996',
+    accentRose: '#c27d60',
+    textPrimary: '#26201a',
+    textSecondary: '#6b6357',
+    textMuted: '#9e9486',
+    modeIndicator: '#d4b996',
+    hudGlow: '0 0 35px rgba(212, 185, 150, 0.35)',
     cardBorderRadius: '24px',
     transitionSpeed: '0.65s'
   },
   shadows: {
-    cyberGlow: '0 0 35px rgba(255, 158, 100, 0.35)',
-    emeraldGlow: '0 0 35px rgba(52, 211, 153, 0.4)',
-    cardShadow: '0 12px 40px 0 rgba(0, 0, 0, 0.55)',
-    buttonGlow: '0 0 20px rgba(255, 158, 100, 0.5)'
+    cyberGlow: '0 12px 35px rgba(212, 185, 150, 0.35)',
+    emeraldGlow: '0 12px 35px rgba(124, 154, 109, 0.3)',
+    cardShadow: '0 24px 50px rgba(70, 55, 40, 0.14)',
+    buttonGlow: '0 6px 24px rgba(212, 185, 150, 0.4)'
   }
 });
 

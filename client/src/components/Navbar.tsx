@@ -1,56 +1,66 @@
 /**
  * Navbar.tsx
- * Glassmorphic Cyber-Noir navigation bar with live status telemetry
+ * Serenity Luxury Wellness & Mindful Pedagogy Navigation Header
  */
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import { styled, MOTION_TOKENS } from '../stitches.config';
-import { Zap, Radio, Layers } from 'lucide-react';
+import { Sparkles, Radio, Layers, Compass } from 'lucide-react';
 
 const NavHeader = styled('header', {
   position: 'sticky',
   top: 0,
   zIndex: 100,
   width: '100%',
-  padding: '14px 32px',
-  backgroundColor: 'rgba(9, 12, 21, 0.88)',
-  borderBottom: '1px solid $borderGlass',
-  backdropFilter: 'blur(20px)',
+  padding: '16px 36px',
+  backgroundColor: 'rgba(251, 249, 244, 0.94)',
+  borderBottom: '1px solid #e5dfd3',
+  backdropFilter: 'blur(16px)',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.4)'
+  boxShadow: '0 6px 30px -12px rgba(70, 55, 40, 0.08)'
 });
 
 const BrandGroup = styled(motion.div, {
   display: 'flex',
   alignItems: 'center',
-  gap: '12px',
+  gap: '14px',
   cursor: 'pointer'
 });
 
 const BrandLogo = styled(motion.div, {
-  width: '38px',
-  height: '38px',
-  borderRadius: '10px',
-  background: 'linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%)',
+  width: '40px',
+  height: '40px',
+  borderRadius: '50%',
+  background: 'linear-gradient(135deg, #7c9a6d 0%, #5f7d52 100%)',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  boxShadow: '0 0 24px rgba(0, 242, 254, 0.5)'
+  color: '#ffffff',
+  boxShadow: '0 6px 18px rgba(124, 154, 109, 0.35)',
+  border: '1px solid rgba(212, 185, 150, 0.5)'
 });
 
 const BrandName = styled('h1', {
   fontFamily: '$display',
-  fontSize: '1.2rem',
-  fontWeight: 800,
-  letterSpacing: '0.04em',
+  fontSize: '1.45rem',
+  fontWeight: 600,
+  letterSpacing: '-0.01em',
   color: '$textPrimary',
   margin: 0,
   display: 'flex',
   alignItems: 'center',
-  gap: '8px'
+  gap: '8px',
+
+  '& em': {
+    fontStyle: 'italic',
+    background: 'linear-gradient(135deg, #b89066, #d4b996)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    fontWeight: 500
+  }
 });
 
 const NavActions = styled('div', {
@@ -63,23 +73,26 @@ const NavButton = styled(motion.button, {
   position: 'relative',
   background: 'transparent',
   border: 'none',
-  borderRadius: '10px',
-  padding: '9px 18px',
+  borderRadius: '9999px',
+  padding: '10px 20px',
   color: '$textSecondary',
-  fontSize: '0.86rem',
+  fontSize: '0.82rem',
   fontFamily: '$sans',
-  fontWeight: 600,
+  fontWeight: 500,
+  letterSpacing: '0.03em',
+  textTransform: 'uppercase',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  transition: 'color 0.2s ease',
+  transition: 'color 0.25s ease',
   zIndex: 1,
 
   variants: {
     active: {
       true: {
-        color: '$accentCyan'
+        color: '$accentSageDeep',
+        fontWeight: 600
       }
     }
   },
@@ -92,10 +105,10 @@ const NavButton = styled(motion.button, {
 const ActiveNavGlider = styled(motion.div, {
   position: 'absolute',
   inset: 0,
-  borderRadius: '10px',
-  backgroundColor: 'rgba(0, 242, 254, 0.12)',
-  border: '1px solid rgba(0, 242, 254, 0.4)',
-  boxShadow: '0 0 16px rgba(0, 242, 254, 0.2)',
+  borderRadius: '9999px',
+  backgroundColor: 'rgba(124, 154, 109, 0.14)',
+  border: '1px solid rgba(124, 154, 109, 0.35)',
+  boxShadow: '0 4px 15px rgba(124, 154, 109, 0.15)',
   zIndex: -1
 });
 
@@ -104,20 +117,23 @@ const StatusPill = styled('div', {
   alignItems: 'center',
   gap: '8px',
   padding: '6px 14px',
-  borderRadius: '20px',
-  backgroundColor: 'rgba(16, 185, 129, 0.1)',
-  border: '1px solid rgba(16, 185, 129, 0.3)',
-  color: '$accentEmerald',
-  fontSize: '0.75rem',
-  fontFamily: '$mono'
+  borderRadius: '9999px',
+  backgroundColor: 'rgba(124, 154, 109, 0.1)',
+  border: '1px solid rgba(124, 154, 109, 0.25)',
+  color: '$accentSageDeep',
+  fontSize: '0.72rem',
+  fontFamily: '$sans',
+  fontWeight: 500,
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase'
 });
 
 const PulseDot = styled(motion.span, {
   width: '6px',
   height: '6px',
   borderRadius: '50%',
-  backgroundColor: '$accentEmerald',
-  boxShadow: '0 0 8px $accentEmerald'
+  backgroundColor: '$accentSage',
+  boxShadow: '0 0 8px rgba(124, 154, 109, 0.6)'
 });
 
 interface NavbarProps {
@@ -131,19 +147,22 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, activeL
     <NavHeader>
       <BrandGroup
         onClick={() => onNavigate('dashboard')}
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.98 }}
         transition={MOTION_TOKENS.snappy}
       >
         <BrandLogo
-          whileHover={{ rotate: 10 }}
+          whileHover={{ rotate: 12, scale: 1.05 }}
           transition={MOTION_TOKENS.snappy}
         >
-          <Zap size={22} color="#090C15" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6"/>
+          </svg>
         </BrandLogo>
         <BrandName>
-          <span>OMNI-TEACH</span>
-          <span style={{ color: '#00F2FE', fontWeight: 400 }}>LIVE</span>
+          <span>Serenity</span>
+          <em>Sanctuary AI</em>
         </BrandName>
       </BrandGroup>
 
@@ -154,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, activeL
             transition={{ repeat: Infinity, duration: 2 }}
           />
           <Radio size={12} />
-          <span>Gemini Multimodal Live WS: Active</span>
+          <span>Gemini Live Sanctuary: Active</span>
         </StatusPill>
 
         <NavButton
@@ -168,15 +187,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, activeL
               transition={MOTION_TOKENS.spatial}
             />
           )}
-          <Layers size={16} />
-          <span>Teacher Command Center</span>
+          <Compass size={15} />
+          <span>Curriculum Studio</span>
         </NavButton>
 
         <NavButton
           active={currentView === 'tutor'}
           onClick={() => onNavigate('tutor')}
           disabled={!activeLessonId}
-          style={{ opacity: !activeLessonId ? 0.35 : 1, cursor: !activeLessonId ? 'not-allowed' : 'pointer' }}
+          style={{ opacity: !activeLessonId ? 0.45 : 1, cursor: !activeLessonId ? 'not-allowed' : 'pointer' }}
           whileTap={{ scale: !activeLessonId ? 1 : 0.96 }}
         >
           {currentView === 'tutor' && (
@@ -185,8 +204,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, activeL
               transition={MOTION_TOKENS.spatial}
             />
           )}
-          <Radio size={16} />
-          <span>Student Voice HUD {activeLessonId ? `(${activeLessonId.slice(0, 8)})` : ''}</span>
+          <Radio size={15} />
+          <span>Voice Sanctuary {activeLessonId ? `(${activeLessonId.slice(0, 8)})` : ''}</span>
         </NavButton>
       </NavActions>
     </NavHeader>

@@ -19,28 +19,28 @@ import {
 
 const DropzoneWrapper = styled('div', {
   position: 'relative',
-  borderRadius: '$cardBorderRadius',
+  borderRadius: '24px',
   backgroundColor: '$bgCard',
-  border: '1px solid $borderGlass',
-  backdropFilter: 'blur(20px)',
-  padding: '32px',
+  border: '1px solid #e5dfd3',
+  padding: '36px',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  gap: '24px',
+  gap: '28px',
+  boxShadow: '0 20px 40px -15px rgba(70, 55, 40, 0.1)',
   transition: 'border-color 0.3s ease',
 
   '&:hover': {
-    borderColor: '$borderGlassHover'
+    borderColor: '#d4b996'
   }
 });
 
 const MagneticGlow = styled(motion.div, {
   position: 'absolute',
-  width: '350px',
-  height: '350px',
+  width: '380px',
+  height: '380px',
   borderRadius: '50%',
-  background: 'radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, transparent 70%)',
+  background: 'radial-gradient(circle, rgba(124, 154, 109, 0.1) 0%, rgba(212, 185, 150, 0.05) 50%, transparent 70%)',
   pointerEvents: 'none',
   transform: 'translate(-50%, -50%)',
   zIndex: 0
@@ -49,21 +49,21 @@ const MagneticGlow = styled(motion.div, {
 const DropArea = styled('div', {
   position: 'relative',
   zIndex: 1,
-  border: '2px dashed rgba(0, 242, 254, 0.25)',
-  borderRadius: '16px',
-  padding: '40px 24px',
+  border: '2px dashed #d4b996',
+  borderRadius: '20px',
+  padding: '44px 24px',
   textAlign: 'center',
   cursor: 'pointer',
-  transition: 'all 0.25s ease',
-  backgroundColor: 'rgba(9, 12, 21, 0.45)',
+  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  backgroundColor: 'rgba(251, 249, 244, 0.65)',
 
   variants: {
     isDragging: {
       true: {
-        borderColor: '$accentCyan',
-        backgroundColor: 'rgba(0, 242, 254, 0.08)',
+        borderColor: '$accentSage',
+        backgroundColor: 'rgba(124, 154, 109, 0.08)',
         transform: 'scale(1.01)',
-        boxShadow: '0 0 30px rgba(0, 242, 254, 0.25)'
+        boxShadow: '0 12px 30px rgba(124, 154, 109, 0.2)'
       }
     }
   }
@@ -74,7 +74,7 @@ const FormGrid = styled('div', {
   zIndex: 1,
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-  gap: '16px'
+  gap: '18px'
 });
 
 const InputGroup = styled('div', {
@@ -84,62 +84,67 @@ const InputGroup = styled('div', {
 });
 
 const Label = styled('label', {
-  fontSize: '0.8rem',
+  fontSize: '0.74rem',
   fontWeight: 600,
-  fontFamily: '$mono',
+  fontFamily: '$sans',
   color: '$textSecondary',
-  letterSpacing: '0.04em',
+  letterSpacing: '0.08em',
   textTransform: 'uppercase'
 });
 
 const StyledInput = styled('input', {
-  backgroundColor: 'rgba(9, 12, 21, 0.8)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '10px',
-  padding: '12px 16px',
+  backgroundColor: '#fbf9f4',
+  border: '1px solid #e5dfd3',
+  borderRadius: '12px',
+  padding: '13px 18px',
   color: '$textPrimary',
   fontFamily: '$sans',
-  fontSize: '0.9rem',
+  fontSize: '0.92rem',
   outline: 'none',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s ease',
 
   '&:focus': {
-    borderColor: '$accentCyan',
-    boxShadow: '0 0 15px rgba(0, 242, 254, 0.25)'
+    borderColor: '$accentSage',
+    boxShadow: '0 0 16px rgba(124, 154, 109, 0.2)',
+    backgroundColor: '#ffffff'
   }
 });
 
 const StyledTextarea = styled('textarea', {
-  backgroundColor: 'rgba(9, 12, 21, 0.8)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '10px',
-  padding: '14px 16px',
+  backgroundColor: '#fbf9f4',
+  border: '1px solid #e5dfd3',
+  borderRadius: '12px',
+  padding: '14px 18px',
   color: '$textPrimary',
   fontFamily: '$sans',
-  fontSize: '0.9rem',
+  fontSize: '0.92rem',
   outline: 'none',
   minHeight: '90px',
   resize: 'vertical',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s ease',
 
   '&:focus': {
-    borderColor: '$accentCyan',
-    boxShadow: '0 0 15px rgba(0, 242, 254, 0.25)'
+    borderColor: '$accentSage',
+    boxShadow: '0 0 16px rgba(124, 154, 109, 0.2)',
+    backgroundColor: '#ffffff'
   }
 });
 
 const StyledSelect = styled('select', {
-  backgroundColor: 'rgba(9, 12, 21, 0.8)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '10px',
-  padding: '12px 16px',
+  backgroundColor: '#fbf9f4',
+  border: '1px solid #e5dfd3',
+  borderRadius: '12px',
+  padding: '13px 18px',
   color: '$textPrimary',
   fontFamily: '$sans',
-  fontSize: '0.9rem',
+  fontSize: '0.92rem',
   outline: 'none',
+  transition: 'all 0.25s ease',
 
   '&:focus': {
-    borderColor: '$accentCyan'
+    borderColor: '$accentSage',
+    boxShadow: '0 0 16px rgba(124, 154, 109, 0.2)',
+    backgroundColor: '#ffffff'
   }
 });
 
@@ -148,28 +153,30 @@ const PresetsContainer = styled('div', {
   zIndex: 1,
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '8px',
+  gap: '10px',
   alignItems: 'center'
 });
 
 const PresetChip = styled(motion.button, {
-  background: 'rgba(255, 255, 255, 0.04)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  background: '#ffffff',
+  border: '1px solid #e5dfd3',
   borderRadius: '9999px',
-  padding: '7px 15px',
+  padding: '8px 18px',
   color: '$textSecondary',
   fontSize: '0.8rem',
+  fontFamily: '$sans',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   gap: '6px',
+  boxShadow: '0 2px 8px rgba(70, 55, 40, 0.05)',
   transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
 
   '&:hover': {
-    borderColor: '$accentCyan',
-    color: '$accentCyan',
-    backgroundColor: 'rgba(0, 242, 254, 0.08)',
-    boxShadow: '0 0 16px rgba(0, 242, 254, 0.2)'
+    borderColor: '$accentSage',
+    color: '$accentSageDeep',
+    backgroundColor: 'rgba(124, 154, 109, 0.08)',
+    boxShadow: '0 4px 12px rgba(124, 154, 109, 0.2)'
   }
 });
 
@@ -177,44 +184,49 @@ const FileList = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   gap: '10px',
-  marginTop: '14px'
+  marginTop: '16px'
 });
 
 const FilePill = styled(motion.div, {
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  padding: '7px 14px',
-  borderRadius: '10px',
-  backgroundColor: 'rgba(0, 242, 254, 0.12)',
-  border: '1px solid rgba(0, 242, 254, 0.35)',
+  padding: '8px 16px',
+  borderRadius: '9999px',
+  backgroundColor: 'rgba(124, 154, 109, 0.12)',
+  border: '1px solid rgba(124, 154, 109, 0.35)',
   fontSize: '0.82rem',
   color: '$textPrimary',
-  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)'
+  boxShadow: '0 2px 8px rgba(70, 55, 40, 0.06)'
 });
 
 const PrimaryButton = styled(motion.button, {
   position: 'relative',
   zIndex: 1,
-  background: 'linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%)',
-  color: '#090C15',
+  background: 'linear-gradient(135deg, #7c9a6d 0%, #5f7d52 100%)',
+  color: '#ffffff',
   border: 'none',
-  borderRadius: '14px',
-  padding: '16px 32px',
-  fontSize: '1.02rem',
-  fontWeight: 700,
-  fontFamily: '$display',
-  letterSpacing: '0.03em',
+  borderRadius: '9999px',
+  padding: '16px 36px',
+  fontSize: '0.92rem',
+  fontWeight: 600,
+  fontFamily: '$sans',
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: '10px',
-  boxShadow: '0 0 30px rgba(0, 242, 254, 0.45)',
-  transition: 'box-shadow 0.25s ease',
+  boxShadow: '0 10px 28px -6px rgba(124, 154, 109, 0.5)',
+  transition: 'box-shadow 0.25s ease, transform 0.25s ease',
+
+  '&:hover': {
+    boxShadow: '0 14px 34px -6px rgba(95, 125, 82, 0.65)'
+  },
 
   '&:disabled': {
-    opacity: 0.5,
+    opacity: 0.55,
     cursor: 'not-allowed',
     boxShadow: 'none'
   }
@@ -232,10 +244,10 @@ interface DropzoneProps {
 }
 
 export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) => {
-  const [topic, setTopic] = useState('Quantum Computing & Superposition');
-  const [subject, setSubject] = useState('Quantum Physics & Computing');
-  const [grade, setGrade] = useState('Undergraduate / AP');
-  const [rawPrompt, setRawPrompt] = useState('Include Dirac bra-ket notation, Bloch sphere intuition, and interactive socratic traps.');
+  const [topic, setTopic] = useState('Neuroplasticity & Mindful Cognition');
+  const [subject, setSubject] = useState('Cognitive Neuroscience & Mind-Body');
+  const [grade, setGrade] = useState('Undergraduate / Advanced Seminar');
+  const [rawPrompt, setRawPrompt] = useState('Include neurogenesis, synaptic plasticity, Socratic dialogue on focused attention vs default mode network, and tactile somatic metaphors.');
   const [files, setFiles] = useState<File[]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 200, y: 150 });
@@ -324,13 +336,13 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) 
           animate={{ y: isDragging ? -4 : 0 }}
           transition={{ repeat: Infinity, duration: 2, repeatType: 'reverse' }}
         >
-          <Upload size={38} color="#00F2FE" style={{ margin: '0 auto 12px auto' }} />
+          <Upload size={38} color="#7c9a6d" style={{ margin: '0 auto 12px auto' }} />
         </motion.div>
-        <h4 style={{ fontFamily: 'Syne', fontSize: '1.15rem', color: '#F8FAFC', marginBottom: '6px' }}>
-          Multimodal Dropzone (PDFs, Images, Audio, Syllabi)
+        <h4 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.45rem', fontWeight: 600, color: '#2e2a24', marginBottom: '6px' }}>
+          Multimodal Sanctuary Intake (PDFs, Research, Audio & Syllabi)
         </h4>
-        <p style={{ fontSize: '0.85rem', color: '#94A3B8' }}>
-          Drag & drop course media or click to browse. Gemini 2.5 ingest & search-grounding starts instantly.
+        <p style={{ fontSize: '0.88rem', color: '#6b6357', maxWidth: '520px', margin: '0 auto' }}>
+          Drag & drop course media or click to browse. Gemini 2.5 ingest & mindful knowledge grounding starts instantly.
         </p>
 
         {files.length > 0 && (
@@ -363,7 +375,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) 
               type="text"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              placeholder="e.g. CRISPR Cas-9 Gene Editing"
+              placeholder="e.g. Neuroplasticity & Mindful Cognition"
               required
             />
           </InputGroup>
@@ -371,21 +383,22 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) 
           <InputGroup>
             <Label>Academic Discipline</Label>
             <StyledSelect value={subject} onChange={(e) => setSubject(e.target.value)}>
+              <option value="Cognitive Neuroscience & Mind-Body">Cognitive Neuroscience & Mind-Body</option>
               <option value="Quantum Physics & Computing">Quantum Physics & Computing</option>
               <option value="Molecular Biology & Genetics">Molecular Biology & Genetics</option>
+              <option value="Mindful Leadership & Stoic Ethics">Mindful Leadership & Stoic Ethics</option>
               <option value="Machine Learning & Neural Architectures">Machine Learning & Neural Architectures</option>
               <option value="Macroeconomics & Monetary Policy">Macroeconomics & Monetary Policy</option>
-              <option value="Astrophysics & Cosmology">Astrophysics & Cosmology</option>
             </StyledSelect>
           </InputGroup>
 
           <InputGroup>
             <Label>Target Proficiency Level</Label>
             <StyledSelect value={grade} onChange={(e) => setGrade(e.target.value)}>
-              <option value="Undergraduate / AP">Undergraduate / AP</option>
+              <option value="Undergraduate / Advanced Seminar">Undergraduate / Advanced Seminar</option>
               <option value="Graduate / Research">Graduate / Research</option>
               <option value="High School Honors">High School Honors</option>
-              <option value="Executive Education">Executive Education</option>
+              <option value="Executive Education & Retreat">Executive Education & Retreat</option>
             </StyledSelect>
           </InputGroup>
         </FormGrid>
@@ -395,14 +408,44 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) 
           <StyledTextarea
             value={rawPrompt}
             onChange={(e) => setRawPrompt(e.target.value)}
-            placeholder="Add specific nuances, student misconceptions to challenge, or workspace requirements..."
+            placeholder="Add specific nuances, student misconceptions to challenge, or sanctuary atmosphere requirements..."
           />
         </InputGroup>
 
         <PresetsContainer>
-          <span style={{ fontSize: '0.78rem', color: '#64748B', fontFamily: 'JetBrains Mono' }}>
-            QUICK HACKATHON PRESETS:
+          <span style={{ fontSize: '0.75rem', color: '#8b6b4a', fontFamily: '$sans', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            Serenity Curriculum Blueprints:
           </span>
+          <PresetChip
+            type="button"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            transition={MOTION_TOKENS.snappy}
+            onClick={() => applyPreset(
+              'Neuroplasticity & Deep Attentive Focus',
+              'Cognitive Neuroscience & Mind-Body',
+              'Undergraduate / Advanced Seminar',
+              'Include neurogenesis, synaptic pruning, Socratic inquiry on focused meditation vs default mode network, and tactile somatic grounding.'
+            )}
+          >
+            <Zap size={12} color="#7c9a6d" /> Neuroplasticity & Mind
+          </PresetChip>
+
+          <PresetChip
+            type="button"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            transition={MOTION_TOKENS.snappy}
+            onClick={() => applyPreset(
+              'Stoic Wisdom & Emotional Equilibrium',
+              'Mindful Leadership & Stoic Ethics',
+              'Executive Education & Retreat',
+              'Deconstruct the dichotomy of control, Marcus Aurelius meditations, and challenge the student on modern burnout vs stoic tranquility.'
+            )}
+          >
+            <Sparkles size={12} color="#d4b996" /> Stoic Equilibrium
+          </PresetChip>
+
           <PresetChip
             type="button"
             whileHover={{ y: -2, scale: 1.02 }}
@@ -411,41 +454,11 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) 
             onClick={() => applyPreset(
               'Quantum Superposition & Decoherence',
               'Quantum Physics & Computing',
-              'Undergraduate / AP',
+              'Undergraduate / Advanced Seminar',
               'Include Bloch sphere geometry, Hadamard gates, and challenge student on wave function collapse vs measurement.'
             )}
           >
-            <Zap size={12} /> Quantum Superposition
-          </PresetChip>
-
-          <PresetChip
-            type="button"
-            whileHover={{ y: -2, scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
-            transition={MOTION_TOKENS.snappy}
-            onClick={() => applyPreset(
-              'CRISPR-Cas9 & Base Editing Mechanisms',
-              'Molecular Biology & Genetics',
-              'Graduate / Research',
-              'Focus on PAM site recognition, guide RNA mismatch tolerances, and off-target cleavage mitigation.'
-            )}
-          >
-            <Sparkles size={12} /> CRISPR-Cas9
-          </PresetChip>
-
-          <PresetChip
-            type="button"
-            whileHover={{ y: -2, scale: 1.02 }}
-            whileTap={{ scale: 0.96 }}
-            transition={MOTION_TOKENS.snappy}
-            onClick={() => applyPreset(
-              'Transformer Attention & Positional Encodings',
-              'Machine Learning & Neural Architectures',
-              'Undergraduate / AP',
-              'Derive Scaled Dot-Product Attention from first principles and probe Rotary Position Embeddings (RoPE).'
-            )}
-          >
-            <Zap size={12} /> Transformers & Attention
+            <Zap size={12} color="#7c9a6d" /> Quantum Superposition
           </PresetChip>
         </PresetsContainer>
 
@@ -456,8 +469,8 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onGenerate, isProcessing }) 
           whileTap={{ scale: isProcessing ? 1 : 0.97 }}
           transition={MOTION_TOKENS.snappy}
         >
-          <Sparkles size={20} />
-          <span>{isProcessing ? 'Orchestrating Live Ecosystem...' : 'Initiate Multimodal Pipeline'}</span>
+          <Sparkles size={18} />
+          <span>{isProcessing ? 'Synthesizing Sanctuary Experience...' : 'Initiate Mindful Curriculum'}</span>
         </PrimaryButton>
       </form>
     </DropzoneWrapper>

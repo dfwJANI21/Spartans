@@ -98,13 +98,15 @@ const Title = styled('h3', {
 });
 
 const StepBadge = styled('div', {
-  fontFamily: '$mono',
+  fontFamily: '$sans',
   fontSize: '0.75rem',
-  padding: '6px 14px',
-  borderRadius: '20px',
-  backgroundColor: 'rgba(0, 242, 254, 0.1)',
-  color: '$accentCyan',
-  border: '1px solid rgba(0, 242, 254, 0.3)',
+  fontWeight: 600,
+  letterSpacing: '0.03em',
+  padding: '6px 16px',
+  borderRadius: '9999px',
+  backgroundColor: 'rgba(124, 154, 109, 0.12)',
+  color: '$accentSageDeep',
+  border: '1px solid rgba(124, 154, 109, 0.3)',
   display: 'flex',
   alignItems: 'center',
   gap: '6px'
@@ -124,7 +126,7 @@ const ConduitLine = styled('div', {
   left: '5%',
   right: '5%',
   height: '2px',
-  background: 'rgba(255, 255, 255, 0.08)',
+  background: '#e5dfd3',
   zIndex: 0,
   pointerEvents: 'none',
 
@@ -138,54 +140,57 @@ const ActiveConduitBeam = styled(motion.div, {
   top: 0,
   left: 0,
   height: '100%',
-  background: 'linear-gradient(90deg, #00F2FE 0%, #4FACFE 50%, #10B981 100%)',
-  boxShadow: '0 0 12px rgba(0, 242, 254, 0.8)'
+  background: 'linear-gradient(90deg, #7c9a6d 0%, #d4b996 50%, #5f7d52 100%)',
+  boxShadow: '0 0 14px rgba(124, 154, 109, 0.45)'
 });
 
 const NodeCardWrapper = styled(motion.div, {
   position: 'relative',
-  borderRadius: '14px',
-  padding: '1px', // for gradient border wrap
+  borderRadius: '16px',
+  padding: '1px',
   overflow: 'hidden'
 });
 
 const ActiveGlowBorder = styled('div', {
   position: 'absolute',
   inset: '-50%',
-  background: 'conic-gradient(from 0deg, transparent 0deg, #00F2FE 90deg, transparent 180deg, #4FACFE 270deg, transparent 360deg)',
+  background: 'conic-gradient(from 0deg, transparent 0deg, #7c9a6d 90deg, transparent 180deg, #d4b996 270deg, transparent 360deg)',
   animation: `${conicGlow} 3s linear infinite`,
   zIndex: 0
 });
 
 const NodeCard = styled('div', {
   padding: '18px',
-  borderRadius: '13px',
-  backgroundColor: 'rgba(9, 12, 21, 0.92)',
+  borderRadius: '15px',
+  backgroundColor: '#ffffff',
   display: 'flex',
   flexDirection: 'column',
   gap: '12px',
   position: 'relative',
   zIndex: 1,
   height: '100%',
-  border: '1px solid rgba(255, 255, 255, 0.06)',
+  border: '1px solid #e5dfd3',
+  boxShadow: '0 4px 14px rgba(70, 55, 40, 0.04)',
   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
 
   variants: {
     state: {
       pending: {
-        opacity: 0.45,
-        backgroundColor: 'rgba(9, 12, 21, 0.65)'
+        opacity: 0.55,
+        backgroundColor: '#fbf9f4',
+        borderColor: '#ede8df'
       },
       active: {
         opacity: 1,
-        backgroundColor: 'rgba(15, 22, 38, 0.95)',
-        boxShadow: '0 0 25px rgba(0, 242, 254, 0.2)'
+        backgroundColor: '#ffffff',
+        borderColor: '$accentSage',
+        boxShadow: '0 8px 24px rgba(124, 154, 109, 0.2)'
       },
       complete: {
         opacity: 1,
-        backgroundColor: 'rgba(16, 185, 129, 0.06)',
-        borderColor: 'rgba(16, 185, 129, 0.5)',
-        boxShadow: '0 0 20px rgba(16, 185, 129, 0.15)'
+        backgroundColor: 'rgba(124, 154, 109, 0.06)',
+        borderColor: '$accentSageDeep',
+        boxShadow: '0 4px 16px rgba(124, 154, 109, 0.15)'
       }
     }
   }
@@ -204,7 +209,7 @@ const IconWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  backgroundColor: '#f3efe8',
   color: '$textSecondary',
   transition: 'all 0.3s ease',
 
@@ -212,14 +217,14 @@ const IconWrapper = styled('div', {
     state: {
       pending: { color: '$textMuted' },
       active: { 
-        backgroundColor: 'rgba(0, 242, 254, 0.18)', 
-        color: '$accentCyan',
-        boxShadow: '0 0 15px rgba(0, 242, 254, 0.4)'
+        backgroundColor: 'rgba(124, 154, 109, 0.16)', 
+        color: '$accentSageDeep',
+        boxShadow: '0 0 14px rgba(124, 154, 109, 0.25)'
       },
       complete: { 
-        backgroundColor: 'rgba(16, 185, 129, 0.18)', 
-        color: '$accentEmerald',
-        boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)'
+        backgroundColor: 'rgba(124, 154, 109, 0.2)', 
+        color: '$accentSageDeep',
+        boxShadow: '0 0 12px rgba(124, 154, 109, 0.2)'
       }
     }
   }
@@ -257,8 +262,8 @@ export const ExecutionDAG: React.FC<ExecutionDAGProps> = ({
     <DAGContainer>
       <HeaderRow>
         <Title>
-          <Sparkles size={18} color="#00F2FE" />
-          <span>Execution DAG Pipeline (Zero-Latency Multi-Agent Engine)</span>
+          <Sparkles size={18} color="#7c9a6d" />
+          <span>Mindful Execution Sanctuary (DAG Pipeline)</span>
         </Title>
         <StepBadge>
           {isProcessing ? (
@@ -329,7 +334,7 @@ export const ExecutionDAG: React.FC<ExecutionDAGProps> = ({
                           animate={{ scale: 1, rotate: 0 }}
                           transition={MOTION_TOKENS.elasticPop}
                         >
-                          <CheckCircle2 size={18} color="#10B981" />
+                          <CheckCircle2 size={18} color="#5f7d52" />
                         </motion.div>
                       )}
                       {nodeState === 'active' && (
@@ -338,7 +343,7 @@ export const ExecutionDAG: React.FC<ExecutionDAGProps> = ({
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ repeat: Infinity, duration: 1.2 }}
                         >
-                          <Zap size={16} color="#00F2FE" />
+                          <Zap size={16} color="#7c9a6d" />
                         </motion.div>
                       )}
                     </AnimatePresence>

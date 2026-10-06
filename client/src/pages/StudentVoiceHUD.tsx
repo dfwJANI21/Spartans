@@ -54,11 +54,13 @@ const TopBar = styled('div', {
 });
 
 const BackButton = styled(motion.button, {
-  background: 'transparent',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '8px',
-  padding: '8px 14px',
+  background: '#ffffff',
+  border: '1px solid #e5dfd3',
+  borderRadius: '9999px',
+  padding: '8px 18px',
   color: '$textSecondary',
+  fontFamily: '$sans',
+  fontWeight: 500,
   fontSize: '0.85rem',
   cursor: 'pointer',
   display: 'flex',
@@ -68,7 +70,8 @@ const BackButton = styled(motion.button, {
 
   '&:hover': {
     color: '$textPrimary',
-    borderColor: '$borderGlassHover'
+    borderColor: '$accentSage',
+    backgroundColor: 'rgba(124, 154, 109, 0.08)'
   }
 });
 
@@ -76,27 +79,28 @@ const ModeIndicatorBadge = styled(motion.div, {
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  padding: '8px 18px',
+  padding: '8px 20px',
   borderRadius: '9999px',
-  fontFamily: '$mono',
-  fontSize: '0.8rem',
-  fontWeight: 700,
-  letterSpacing: '0.05em',
+  fontFamily: '$sans',
+  fontSize: '0.78rem',
+  fontWeight: 600,
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase',
   transition: 'all 0.5s ease',
 
   variants: {
     mode: {
       rigorous: {
-        backgroundColor: 'rgba(0, 242, 254, 0.12)',
-        border: '1px solid $accentCyan',
-        color: '$accentCyan',
-        boxShadow: '0 0 20px rgba(0, 242, 254, 0.3)'
+        backgroundColor: 'rgba(212, 185, 150, 0.22)',
+        border: '1px solid #d4b996',
+        color: '#8b6b4a',
+        boxShadow: '0 2px 12px rgba(212, 185, 150, 0.2)'
       },
       calm: {
-        backgroundColor: 'rgba(255, 158, 100, 0.18)',
-        border: '1px solid $accentCyan',
-        color: '$accentCyan',
-        boxShadow: '0 0 25px rgba(255, 158, 100, 0.45)'
+        backgroundColor: 'rgba(124, 154, 109, 0.16)',
+        border: '1px solid #7c9a6d',
+        color: '#5f7d52',
+        boxShadow: '0 2px 14px rgba(124, 154, 109, 0.25)'
       }
     }
   }
@@ -113,10 +117,10 @@ const CallGrid = styled('div', {
 });
 
 const VoiceChamber = styled('div', {
-  padding: '32px',
+  padding: '36px',
   borderRadius: '$cardBorderRadius',
-  backgroundColor: '$bgCard',
-  border: '1px solid $borderGlass',
+  backgroundColor: '#ffffff',
+  border: '1px solid #e5dfd3',
   backdropFilter: 'blur(24px)',
   boxShadow: '$cardShadow',
   display: 'flex',
@@ -132,12 +136,12 @@ const ControlsDock = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '16px',
-  padding: '12px 24px',
+  padding: '12px 26px',
   borderRadius: '9999px',
-  backgroundColor: 'rgba(9, 12, 21, 0.85)',
-  border: '1px solid $borderGlass',
+  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+  border: '1px solid #e5dfd3',
   backdropFilter: 'blur(16px)',
-  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
+  boxShadow: '0 8px 30px rgba(70, 55, 40, 0.12)',
   zIndex: 10
 });
 
@@ -155,19 +159,19 @@ const CallButton = styled(motion.button, {
   variants: {
     active: {
       true: {
-        backgroundColor: '#EF4444',
+        backgroundColor: '#c27d60',
         color: '#FFFFFF',
-        boxShadow: '0 0 25px rgba(239, 68, 68, 0.5)',
+        boxShadow: '0 0 20px rgba(194, 125, 96, 0.45)',
         '&:hover': {
-          boxShadow: '0 0 35px rgba(239, 68, 68, 0.8)'
+          boxShadow: '0 0 30px rgba(194, 125, 96, 0.7)'
         }
       },
       false: {
-        background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+        background: 'linear-gradient(135deg, #7c9a6d 0%, #5f7d52 100%)',
         color: '#FFFFFF',
-        boxShadow: '0 0 25px rgba(16, 185, 129, 0.5)',
+        boxShadow: '0 0 25px rgba(124, 154, 109, 0.45)',
         '&:hover': {
-          boxShadow: '0 0 35px rgba(16, 185, 129, 0.8)'
+          boxShadow: '0 0 35px rgba(124, 154, 109, 0.7)'
         }
       }
     }
@@ -178,8 +182,8 @@ const MicButton = styled(motion.button, {
   width: '46px',
   height: '46px',
   borderRadius: '50%',
-  border: '1px solid rgba(255, 255, 255, 0.15)',
-  backgroundColor: 'rgba(255, 255, 255, 0.06)',
+  border: '1px solid #e5dfd3',
+  backgroundColor: '#fbf9f4',
   color: '$textPrimary',
   display: 'flex',
   alignItems: 'center',
@@ -188,29 +192,30 @@ const MicButton = styled(motion.button, {
   transition: 'all 0.2s ease',
 
   '&:hover': {
-    borderColor: '$accentCyan',
-    backgroundColor: 'rgba(0, 242, 254, 0.1)'
+    borderColor: '$accentSage',
+    backgroundColor: 'rgba(124, 154, 109, 0.1)'
   },
 
   variants: {
     muted: {
       true: {
-        backgroundColor: 'rgba(239, 68, 68, 0.15)',
-        borderColor: '#EF4444',
-        color: '#EF4444'
+        backgroundColor: 'rgba(194, 125, 96, 0.15)',
+        borderColor: '#c27d60',
+        color: '#c27d60'
       }
     }
   }
 });
 
 const SentimentTestButton = styled(motion.button, {
-  padding: '8px 16px',
-  borderRadius: '20px',
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-  border: '1px dashed $borderGlass',
+  padding: '8px 18px',
+  borderRadius: '9999px',
+  backgroundColor: '#ffffff',
+  border: '1px dashed #d4b996',
   color: '$textSecondary',
-  fontFamily: '$mono',
-  fontSize: '0.78rem',
+  fontFamily: '$sans',
+  fontWeight: 500,
+  fontSize: '0.8rem',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -218,8 +223,9 @@ const SentimentTestButton = styled(motion.button, {
   transition: 'all 0.2s ease',
 
   '&:hover': {
-    borderColor: '$accentCyan',
-    color: '$accentCyan'
+    borderColor: '$accentSage',
+    color: '$accentSageDeep',
+    backgroundColor: 'rgba(124, 154, 109, 0.06)'
   }
 });
 
@@ -232,8 +238,8 @@ const SidePanel = styled('div', {
 const CardPanel = styled('div', {
   padding: '24px',
   borderRadius: '$cardBorderRadius',
-  backgroundColor: '$bgCard',
-  border: '1px solid $borderGlass',
+  backgroundColor: '#ffffff',
+  border: '1px solid #e5dfd3',
   backdropFilter: 'blur(20px)',
   boxShadow: '$cardShadow',
   display: 'flex',
@@ -257,7 +263,7 @@ const DialogueFeed = styled('div', {
 
 const MessageBubble = styled(motion.div, {
   padding: '12px 18px',
-  borderRadius: '14px',
+  borderRadius: '16px',
   fontSize: '0.9rem',
   lineHeight: 1.5,
   display: 'flex',
@@ -268,23 +274,26 @@ const MessageBubble = styled(motion.div, {
     sender: {
       tutor: {
         alignSelf: 'flex-start',
-        backgroundColor: 'rgba(20, 26, 45, 0.85)',
-        border: '1px solid $borderGlass',
-        color: '$textPrimary'
+        backgroundColor: '#ffffff',
+        border: '1px solid #e5dfd3',
+        color: '$textPrimary',
+        boxShadow: '0 2px 8px rgba(70, 55, 40, 0.04)'
       },
       student: {
         alignSelf: 'flex-end',
-        backgroundColor: 'rgba(0, 242, 254, 0.12)',
-        border: '1px solid rgba(0, 242, 254, 0.3)',
-        color: '$textPrimary'
+        backgroundColor: 'rgba(124, 154, 109, 0.15)',
+        border: '1px solid rgba(124, 154, 109, 0.35)',
+        color: '$textPrimary',
+        boxShadow: '0 2px 8px rgba(124, 154, 109, 0.08)'
       },
       system: {
         alignSelf: 'center',
-        backgroundColor: 'rgba(255, 158, 100, 0.15)',
-        border: '1px dashed rgba(255, 158, 100, 0.4)',
-        color: '$accentCyan',
+        backgroundColor: 'rgba(212, 185, 150, 0.2)',
+        border: '1px dashed rgba(212, 185, 150, 0.6)',
+        color: '#8b6b4a',
         fontSize: '0.8rem',
-        fontFamily: '$mono'
+        fontFamily: '$sans',
+        fontWeight: 600
       }
     }
   }
@@ -342,11 +351,11 @@ export const StudentVoiceHUD: React.FC<StudentVoiceHUDProps> = ({
               <ArrowLeft size={16} /> Back to Dashboard
             </BackButton>
             <div>
-              <h3 style={{ fontFamily: 'Syne', fontSize: '1.2rem', color: '#F8FAFC', margin: 0 }}>
+              <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.45rem', fontWeight: 600, color: '#2e2a24', margin: 0 }}>
                 {title}
               </h3>
-              <span style={{ fontSize: '0.8rem', color: '#94A3B8' }}>
-                Gemini Multimodal Live API • Bidirectional Socratic HUD
+              <span style={{ fontSize: '0.82rem', color: '#6b6357' }}>
+                Gemini Multimodal Live API • Bidirectional Socratic Sanctuary
               </span>
             </div>
           </div>
@@ -383,13 +392,13 @@ export const StudentVoiceHUD: React.FC<StudentVoiceHUDProps> = ({
           {/* Main Voice Chamber */}
           <VoiceChamber>
             <div style={{ textAlign: 'center' }}>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.75rem', color: currentSentiment === 'calm' ? '#FF9E64' : '#00F2FE', letterSpacing: '0.08em' }}>
-                NATIVE WEBSOCKET 16KHZ AUDIO CHANNEL
+              <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', fontWeight: 600, color: currentSentiment === 'calm' ? '#d4b996' : '#7c9a6d', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                Native WebSocket 16kHz Audio Channel
               </span>
-              <h4 style={{ fontFamily: 'Syne', fontSize: '1.4rem', color: '#F8FAFC', marginTop: '4px' }}>
-                {isCalling ? 'Socratic Voice Session Active' : 'Begin Socratic Call'}
+              <h4 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.75rem', fontWeight: 600, color: '#2e2a24', marginTop: '4px' }}>
+                {isCalling ? 'Socratic Dialogue Active' : 'Begin Socratic Call'}
               </h4>
-              <p style={{ fontSize: '0.85rem', color: '#94A3B8', marginTop: '2px' }}>
+              <p style={{ fontSize: '0.88rem', color: '#6b6357', marginTop: '2px' }}>
                 {statusText}
               </p>
             </div>
@@ -462,15 +471,15 @@ export const StudentVoiceHUD: React.FC<StudentVoiceHUDProps> = ({
           <SidePanel>
             <CardPanel>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <BookOpen size={18} color="#00F2FE" />
-                <h4 style={{ fontFamily: 'Syne', fontSize: '1rem', color: '#F8FAFC', margin: 0 }}>
+                <BookOpen size={18} color="#7c9a6d" />
+                <h4 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 600, color: '#2e2a24', margin: 0 }}>
                   Curriculum Objectives
                 </h4>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {objectives.map((obj: string, idx: number) => (
-                  <div key={idx} style={{ display: 'flex', gap: '10px', fontSize: '0.85rem', color: '#CBD5E1' }}>
-                    <CheckCircle size={16} color="#10B981" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <div key={idx} style={{ display: 'flex', gap: '10px', fontSize: '0.88rem', color: '#4a4237' }}>
+                    <CheckCircle size={16} color="#5f7d52" style={{ flexShrink: 0, marginTop: '2px' }} />
                     <span>{obj}</span>
                   </div>
                 ))}
@@ -479,19 +488,19 @@ export const StudentVoiceHUD: React.FC<StudentVoiceHUDProps> = ({
 
             <CardPanel>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Sparkles size={18} color="#FF9E64" />
-                <h4 style={{ fontFamily: 'Syne', fontSize: '1rem', color: '#F8FAFC', margin: 0 }}>
+                <Sparkles size={18} color="#d4b996" />
+                <h4 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 600, color: '#2e2a24', margin: 0 }}>
                   Intuition Pumps & Analogies
                 </h4>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {keyConcepts.map((c: any, i: number) => (
-                  <div key={i} style={{ padding: '12px', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <div style={{ fontWeight: 600, color: '#00F2FE', fontSize: '0.85rem', marginBottom: '4px' }}>
+                  <div key={i} style={{ padding: '14px', borderRadius: '12px', backgroundColor: '#fbf9f4', border: '1px solid #e5dfd3' }}>
+                    <div style={{ fontWeight: 600, color: '#5f7d52', fontSize: '0.88rem', marginBottom: '4px' }}>
                       {c.name}
                     </div>
                     {c.analogy && (
-                      <div style={{ fontSize: '0.8rem', color: '#94A3B8', fontStyle: 'italic' }}>
+                      <div style={{ fontSize: '0.82rem', color: '#6b6357', fontStyle: 'italic' }}>
                         "{c.analogy}"
                       </div>
                     )}
