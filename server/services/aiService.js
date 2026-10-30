@@ -94,16 +94,38 @@ You MUST respond strictly with valid JSON conforming to this structure:
 
       console.log('[AIService] Querying Gemini model with Google Search Retrieval grounding...');
       
-      // Call Gemini with search grounding
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: contents,
-        config: {
-          systemInstruction: systemInstruction,
-          tools: [{ googleSearch: {} }],
-          responseMimeType: 'application/json'
+      const candidateModels = [
+        'gemini-3.8-flash',
+        'gemini-flash-latest',
+        'gemini-2.5-flash',
+        'gemini-pro-latest'
+      ];
+
+      let response = null;
+      let lastErr = null;
+
+      for (const mName of candidateModels) {
+        try {
+          console.log(`[AIService] Trying model ${mName} with search grounding...`);
+          response = await ai.models.generateContent({
+            model: mName,
+            contents: contents,
+            config: {
+              systemInstruction: systemInstruction,
+              tools: [{ googleSearch: {} }],
+              responseMimeType: 'application/json'
+            }
+          });
+          if (response) break;
+        } catch (err) {
+          console.warn(`[AIService] Model ${mName} attempt notice:`, err.message);
+          lastErr = err;
         }
-      });
+      }
+
+      if (!response) {
+        throw lastErr || new Error('All candidate models failed');
+      }
 
       const responseText = response.text || (response.candidates && response.candidates[0]?.content?.parts[0]?.text) || '{}';
       
