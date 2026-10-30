@@ -1,7 +1,7 @@
 /**
  * SocraticPills.tsx
- * Dynamic UI action pills for interactive Socratic prompts:
- * "Hint", "Explain simply", "Spawn Debate Mode", "Real-world Analogy"
+ * Google Material Design 3 Interactive Prompt Chips
+ * Provides quick Socratic interactions: Hint, Simplify, Debate Mode, and Analogy.
  */
 
 import React from 'react';
@@ -12,33 +12,33 @@ import { Lightbulb, Brain, Swords, Globe2 } from 'lucide-react';
 const PillsContainer = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '10px',
+  gap: '8px',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '8px 0'
+  padding: '6px 0'
 });
 
 const PillButton = styled(motion.button, {
   background: '#ffffff',
-  border: '1px solid #e5dfd3',
-  borderRadius: '9999px',
-  padding: '10px 20px',
-  fontSize: '0.86rem',
+  border: '1px solid #dadce0',
+  borderRadius: '20px',
+  padding: '8px 16px',
+  fontSize: '0.82rem',
   fontFamily: '$sans',
-  fontWeight: 600,
+  fontWeight: 500,
   color: '$textPrimary',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
-  gap: '8px',
-  boxShadow: '0 2px 10px rgba(70, 55, 40, 0.05)',
-  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+  gap: '6px',
+  boxShadow: '0 1px 2px rgba(60, 64, 67, 0.08)',
+  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
 
   '&:hover': {
-    borderColor: '$accentSage',
-    backgroundColor: 'rgba(124, 154, 109, 0.08)',
-    color: '$accentSageDeep',
-    boxShadow: '0 4px 14px rgba(124, 154, 109, 0.18)'
+    borderColor: '#1a73e8',
+    backgroundColor: '#e8f0fe',
+    color: '#1a73e8',
+    boxShadow: '0 1px 3px rgba(60, 64, 67, 0.16)'
   },
 
   '&:disabled': {
@@ -51,23 +51,30 @@ const PillButton = styled(motion.button, {
     intent: {
       hint: {
         '&:hover': {
-          borderColor: '$accentGold',
-          color: '$accentWalnut',
-          backgroundColor: 'rgba(212, 185, 150, 0.15)'
+          borderColor: '#fbbc04',
+          color: '#b06000',
+          backgroundColor: '#fef7e0'
         }
       },
       debate: {
         '&:hover': {
-          borderColor: '$accentRose',
-          color: '$accentRose',
-          backgroundColor: 'rgba(194, 125, 96, 0.12)'
+          borderColor: '#ea4335',
+          color: '#c5221f',
+          backgroundColor: '#fce8e6'
         }
       },
       simple: {
         '&:hover': {
-          borderColor: '$accentSage',
-          color: '$accentSageDeep',
-          backgroundColor: 'rgba(124, 154, 109, 0.12)'
+          borderColor: '#1a73e8',
+          color: '#1a73e8',
+          backgroundColor: '#e8f0fe'
+        }
+      },
+      analogy: {
+        '&:hover': {
+          borderColor: '#34a853',
+          color: '#137333',
+          backgroundColor: '#e6f4ea'
         }
       }
     }
@@ -82,46 +89,50 @@ interface SocraticPillsProps {
 export const SocraticPills: React.FC<SocraticPillsProps> = ({ onAction, disabled = false }) => {
   const actions = [
     {
-      label: '💡 Give Me a Hint',
+      label: 'Give Me a Hint',
       intent: 'hint' as const,
       prompt: 'Can you give me a subtle Socratic hint without directly giving me the answer?',
-      icon: Lightbulb
+      icon: Lightbulb,
+      color: '#fbbc04'
     },
     {
-      label: '🧠 Explain Simply',
+      label: 'Explain Simply',
       intent: 'simple' as const,
       prompt: 'Can you deconstruct this concept using a simple intuition pump or everyday analogy?',
-      icon: Brain
+      icon: Brain,
+      color: '#1a73e8'
     },
     {
-      label: '⚔️ Spawn Debate Mode',
+      label: 'Spawn Debate Mode',
       intent: 'debate' as const,
       prompt: 'Spawn Socratic Debate Mode! Challenge my perspective and play devil\'s advocate against my reasoning.',
-      icon: Swords
+      icon: Swords,
+      color: '#ea4335'
     },
     {
-      label: '🌍 Real-World Analogy',
-      intent: 'simple' as const,
-      prompt: 'How does this principle manifest in contemporary real-world technology or daily phenomena?',
-      icon: Globe2
+      label: 'Real-World Analogy',
+      intent: 'analogy' as const,
+      prompt: 'Can you connect this concept to a concrete real-world engineering or scientific scenario?',
+      icon: Globe2,
+      color: '#34a853'
     }
   ];
 
   return (
     <PillsContainer>
-      {actions.map((act, i) => {
-        const IconComponent = act.icon;
+      {actions.map((act) => {
+        const Icon = act.icon;
         return (
           <PillButton
-            key={i}
+            key={act.label}
             intent={act.intent}
             disabled={disabled}
             onClick={() => onAction(act.prompt)}
-            whileHover={{ y: disabled ? 0 : -2, scale: disabled ? 1 : 1.03 }}
-            whileTap={{ scale: disabled ? 1 : 0.96 }}
+            whileHover={{ y: -1, scale: disabled ? 1 : 1.01 }}
+            whileTap={{ scale: disabled ? 1 : 0.98 }}
             transition={MOTION_TOKENS.snappy}
           >
-            <IconComponent size={15} />
+            <Icon size={14} color={act.color} />
             <span>{act.label}</span>
           </PillButton>
         );

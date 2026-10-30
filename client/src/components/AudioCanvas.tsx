@@ -1,7 +1,7 @@
 /**
  * AudioCanvas.tsx
- * Artisan 60fps Multi-Octave Harmonic Fluid Visualizer.
- * Synthesizes smoothed audio RMS energy, harmonic wavefield dispersion,
+ * Google Gemini Live 60fps Multi-Octave Harmonic Fluid Visualizer
+ * Synthesizes smoothed audio RMS energy, Google 4-color wavefield dispersion,
  * dynamic transient shockwaves, and orbital stardust physics.
  */
 
@@ -31,8 +31,8 @@ const CanvasContainer = styled('div', {
 const StyledCanvas = styled('canvas', {
   width: '100%',
   height: '100%',
-  filter: 'drop-shadow(0 0 28px rgba(124, 154, 109, 0.25))',
-  transition: 'filter 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+  filter: 'drop-shadow(0 0 24px rgba(66, 133, 244, 0.22))',
+  transition: 'filter 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
 });
 
 const AmbientStatusPill = styled('div', {
@@ -41,33 +41,31 @@ const AmbientStatusPill = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
-  padding: '8px 18px',
-  borderRadius: '9999px',
-  background: 'rgba(255, 255, 255, 0.94)',
+  padding: '6px 16px',
+  borderRadius: '20px',
+  background: 'rgba(255, 255, 255, 0.95)',
   backdropFilter: 'blur(16px)',
-  border: '1px solid #e5dfd3',
+  border: '1px solid #dadce0',
   fontFamily: '$sans',
-  fontWeight: 600,
+  fontWeight: 500,
   fontSize: '0.76rem',
-  letterSpacing: '0.04em',
-  textTransform: 'uppercase',
   color: '$textPrimary',
-  boxShadow: '0 4px 16px rgba(70, 55, 40, 0.08)',
+  boxShadow: '0 1px 3px rgba(60, 64, 67, 0.12)',
   zIndex: 2,
-  transition: 'all 0.3s ease'
+  transition: 'all 0.25s ease'
 });
 
 const StatusDot = styled('span', {
   width: '8px',
   height: '8px',
   borderRadius: '50%',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.25s ease',
   variants: {
     state: {
-      idle: { backgroundColor: '#a89f91' },
-      studentSpeaking: { backgroundColor: '$accentSage', boxShadow: '0 0 10px $accentSage' },
-      aiSpeaking: { backgroundColor: '$accentGold', boxShadow: '0 0 14px $accentGold' },
-      calmMode: { backgroundColor: '$accentSageDeep', boxShadow: '0 0 14px $accentSageDeep' }
+      idle: { backgroundColor: '#80868b' },
+      studentSpeaking: { backgroundColor: '#1a73e8', boxShadow: '0 0 8px #1a73e8' },
+      aiSpeaking: { backgroundColor: '#ea4335', boxShadow: '0 0 10px #ea4335' },
+      calmMode: { backgroundColor: '#34a853', boxShadow: '0 0 10px #34a853' }
     }
   }
 });
@@ -85,6 +83,7 @@ interface StardustParticle {
   speed: number;
   size: number;
   alpha: number;
+  colorIndex: number;
 }
 
 export const AudioCanvas: React.FC<AudioCanvasProps> = ({
@@ -100,6 +99,14 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
   const shockwavesRef = useRef<Shockwave[]>([]);
   const stardustRef = useRef<StardustParticle[]>([]);
 
+  // Google 4 Colors: Blue, Red, Yellow, Green
+  const googleColors = [
+    [66, 133, 244], // Google Blue
+    [234, 67, 53],  // Google Red
+    [251, 188, 4],  // Google Yellow
+    [52, 168, 83]   // Google Green
+  ];
+
   // Initialize stardust particles once
   useEffect(() => {
     const particles: StardustParticle[] = [];
@@ -109,7 +116,8 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
         distance: 25 + Math.random() * 85,
         speed: (Math.random() * 0.015 + 0.005) * (Math.random() > 0.5 ? 1 : -1),
         size: Math.random() * 1.8 + 0.8,
-        alpha: Math.random() * 0.7 + 0.3
+        alpha: Math.random() * 0.7 + 0.3,
+        colorIndex: i % 4
       });
     }
     stardustRef.current = particles;
@@ -134,7 +142,7 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
       const centerX = width / 2;
       const centerY = height / 2;
 
-      // 1. Smoothly interpolate target energy via dynamic lerp (avoids twitches)
+      // 1. Smoothly interpolate target energy via dynamic lerp
       const targetEnergy = isLive ? Math.min(1.0, studentLevel * 1.35 + aiLevel * 1.6) : 0.04;
       const lerpFactor = targetEnergy > smoothedEnergyRef.current ? 0.22 : 0.08;
       smoothedEnergyRef.current += (targetEnergy - smoothedEnergyRef.current) * lerpFactor;
@@ -155,11 +163,11 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
       phaseRef.current += 0.024 + energy * 0.04;
       ctx.clearRect(0, 0, width, height);
 
-      // Serenity sound-bath aura: Sage [124, 154, 109], Forest [95, 125, 82], Gold [212, 185, 150]
+      // Google brand color scheme
       const isCalm = sentiment === 'calm';
-      const cPrimary = isCalm ? [124, 154, 109] : [95, 125, 82];
-      const cSecondary = isCalm ? [212, 185, 150] : [212, 185, 150];
-      const cCore = isCalm ? [251, 249, 244] : [255, 255, 255];
+      const cPrimary = isCalm ? [52, 168, 83] : [66, 133, 244];
+      const cSecondary = isCalm ? [66, 133, 244] : [234, 67, 53];
+      const cCore = [255, 255, 255];
 
       const baseRadius = Math.min(width, height) * 0.18 * (1 + energy * 0.35);
 
@@ -168,8 +176,8 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
         centerX, centerY, baseRadius * 0.1,
         centerX, centerY, baseRadius * 2.5
       );
-      ambientGrad.addColorStop(0, `rgba(${cPrimary[0]}, ${cPrimary[1]}, ${cPrimary[2]}, ${isLive ? 0.28 + energy * 0.3 : 0.08})`);
-      ambientGrad.addColorStop(0.5, `rgba(${cSecondary[0]}, ${cSecondary[1]}, ${cSecondary[2]}, ${isLive ? 0.12 + energy * 0.15 : 0.04})`);
+      ambientGrad.addColorStop(0, `rgba(${cPrimary[0]}, ${cPrimary[1]}, ${cPrimary[2]}, ${isLive ? 0.22 + energy * 0.25 : 0.06})`);
+      ambientGrad.addColorStop(0.5, `rgba(${cSecondary[0]}, ${cSecondary[1]}, ${cSecondary[2]}, ${isLive ? 0.1 + energy * 0.12 : 0.03})`);
       ambientGrad.addColorStop(1, 'transparent');
 
       ctx.beginPath();
@@ -187,7 +195,7 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
         ctx.beginPath();
         ctx.arc(centerX, centerY, sw.radius, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(${cPrimary[0]}, ${cPrimary[1]}, ${cPrimary[2]}, ${sw.opacity * 0.5})`;
-        ctx.lineWidth = 2.5;
+        ctx.lineWidth = 2.2;
         ctx.stroke();
         ctx.restore();
 
@@ -196,24 +204,24 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
         }
       }
 
-      // 5. Multi-Octave Harmonic Fluid Wavefield (3 Superimposed Wave Layers)
+      // 5. Multi-Octave Harmonic Fluid Wavefield (Google 4 Colors)
       const layers = [
-        { color: cPrimary, scale: 1.0, freq: 3, ampMultiplier: 1.0, phaseOffset: 0 },
-        { color: cSecondary, scale: 1.15, freq: 5, ampMultiplier: 0.85, phaseOffset: Math.PI / 3 },
-        { color: [212, 185, 150], scale: 1.28, freq: 7, ampMultiplier: 0.65, phaseOffset: Math.PI / 2 }
+        { color: [66, 133, 244], scale: 1.0, freq: 3, ampMultiplier: 1.0, phaseOffset: 0 },
+        { color: [234, 67, 53], scale: 1.14, freq: 4, ampMultiplier: 0.85, phaseOffset: Math.PI / 3 },
+        { color: [251, 188, 4], scale: 1.25, freq: 6, ampMultiplier: 0.7, phaseOffset: Math.PI / 2 },
+        { color: [52, 168, 83], scale: 1.34, freq: 5, ampMultiplier: 0.6, phaseOffset: Math.PI }
       ];
 
       layers.forEach((l, layerIdx) => {
         ctx.save();
         ctx.beginPath();
-        ctx.lineWidth = isCalm ? 1.5 : 1.8;
-        const alpha = Math.max(0.12, 0.55 - layerIdx * 0.15 + energy * 0.35);
+        ctx.lineWidth = 1.8;
+        const alpha = Math.max(0.15, 0.6 - layerIdx * 0.12 + energy * 0.3);
         ctx.strokeStyle = `rgba(${l.color[0]}, ${l.color[1]}, ${l.color[2]}, ${alpha})`;
 
         const points = 72;
         for (let i = 0; i <= points; i++) {
           const angle = (i / points) * Math.PI * 2;
-          // Superimposed trigonometric harmonics
           const harmonic1 = Math.sin(angle * l.freq + phaseRef.current + l.phaseOffset);
           const harmonic2 = Math.cos(angle * (l.freq * 1.5) - phaseRef.current * 1.4);
           const waveAmp = (harmonic1 * 0.65 + harmonic2 * 0.35) * (10 + energy * 36) * l.ampMultiplier;
@@ -230,16 +238,17 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
         ctx.restore();
       });
 
-      // 6. Orbiting Stardust Constellation Particles
+      // 6. Orbiting Stardust Constellation Particles with Google Colors
       stardustRef.current.forEach(p => {
         p.angle += p.speed * (1 + energy * 2.5);
         const dynamicDist = (baseRadius * 0.6 + p.distance) * (1 + energy * 0.25);
         const px = centerX + Math.cos(p.angle) * dynamicDist;
         const py = centerY + Math.sin(p.angle) * dynamicDist;
+        const pColor = googleColors[p.colorIndex];
 
         ctx.beginPath();
         ctx.arc(px, py, p.size * (1 + energy * 0.4), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${cPrimary[0]}, ${cPrimary[1]}, ${cPrimary[2]}, ${p.alpha * (0.4 + energy * 0.6)})`;
+        ctx.fillStyle = `rgba(${pColor[0]}, ${pColor[1]}, ${pColor[2]}, ${p.alpha * (0.4 + energy * 0.6)})`;
         ctx.fill();
       });
 
@@ -253,14 +262,14 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
         centerX, centerY, coreR
       );
       coreGradient.addColorStop(0, `rgba(${cCore[0]}, ${cCore[1]}, ${cCore[2]}, 0.98)`);
-      coreGradient.addColorStop(0.65, `rgba(${cPrimary[0]}, ${cPrimary[1]}, ${cPrimary[2]}, 0.85)`);
-      coreGradient.addColorStop(1, `rgba(${cSecondary[0]}, ${cSecondary[1]}, ${cSecondary[2]}, 0.5)`);
+      coreGradient.addColorStop(0.6, `rgba(${cPrimary[0]}, ${cPrimary[1]}, ${cPrimary[2]}, 0.8)`);
+      coreGradient.addColorStop(1, `rgba(${cSecondary[0]}, ${cSecondary[1]}, ${cSecondary[2]}, 0.4)`);
 
       ctx.fillStyle = coreGradient;
-      ctx.shadowColor = isCalm ? '#d4b996' : '#7c9a6d';
-      ctx.shadowBlur = isLive ? 24 + energy * 30 : 10;
+      ctx.shadowColor = isCalm ? '#34a853' : '#1a73e8';
+      ctx.shadowBlur = isLive ? 20 + energy * 25 : 8;
       ctx.fill();
-      ctx.shadowBlur = 0; // Reset
+      ctx.shadowBlur = 0;
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -273,11 +282,11 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
   }, [studentLevel, aiLevel, isLive, sentiment]);
 
   const getStatus = () => {
-    if (!isLive) return { text: 'Tutor Standby', dot: 'idle' as const };
-    if (aiLevel > 0.08) return { text: 'Tutor Speaking...', dot: 'aiSpeaking' as const };
+    if (!isLive) return { text: 'Gemini Live Standby', dot: 'idle' as const };
+    if (aiLevel > 0.08) return { text: 'Gemini Tutor Speaking...', dot: 'aiSpeaking' as const };
     if (studentLevel > 0.04) return { text: 'Listening to Student...', dot: 'studentSpeaking' as const };
-    if (sentiment === 'calm') return { text: 'Calm Adaptive Mode Active', dot: 'calmMode' as const };
-    return { text: 'Bidirectional Live Audio Active', dot: 'studentSpeaking' as const };
+    if (sentiment === 'calm') return { text: 'Adaptive Cadence Active', dot: 'calmMode' as const };
+    return { text: 'Bidirectional Live Audio Connected', dot: 'studentSpeaking' as const };
   };
 
   const status = getStatus();
@@ -292,4 +301,3 @@ export const AudioCanvas: React.FC<AudioCanvasProps> = ({
     </CanvasContainer>
   );
 };
-

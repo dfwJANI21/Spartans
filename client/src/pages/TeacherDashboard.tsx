@@ -1,8 +1,8 @@
 /**
  * TeacherDashboard.tsx
- * Teacher Command Center (/)
- * Ingests multimodal inputs, displays live Execution DAG node pipeline,
- * and renders interactive 3D Artifact Studio.
+ * Google Workspace for Education • Teacher Command Studio (/)
+ * Ingests multimodal inputs, displays live Vertex AI Execution DAG node pipeline,
+ * and renders interactive 3D Google Workspace Artifact Studio.
  */
 
 import React, { useState } from 'react';
@@ -12,54 +12,53 @@ import { styled, MOTION_TOKENS } from '../stitches.config';
 import { Dropzone } from '../components/Dropzone';
 import { ExecutionDAG } from '../components/ExecutionDAG';
 import { ArtifactStudio3D } from '../components/ArtifactStudio3D';
-import { Sparkles, Layers } from 'lucide-react';
+import { Sparkles, Layers, BookOpen } from 'lucide-react';
 
 const PageContainer = styled('div', {
   maxWidth: '1240px',
   margin: '0 auto',
-  padding: '40px 24px 80px 24px',
+  padding: '36px 24px 80px 24px',
   display: 'flex',
   flexDirection: 'column',
-  gap: '36px'
+  gap: '32px'
 });
 
 const HeroSection = styled(motion.div, {
   display: 'flex',
   flexDirection: 'column',
-  gap: '14px'
+  gap: '12px'
 });
 
 const Badge = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '8px',
-  padding: '7px 18px',
-  borderRadius: '9999px',
-  backgroundColor: 'rgba(124, 154, 109, 0.12)',
-  border: '1px solid rgba(124, 154, 109, 0.3)',
-  color: '$accentSageDeep',
+  padding: '6px 14px',
+  borderRadius: '20px',
+  backgroundColor: '#e8f0fe',
+  border: '1px solid rgba(26, 115, 232, 0.3)',
+  color: '#1a73e8',
   fontFamily: '$sans',
   fontSize: '0.8rem',
   fontWeight: 600,
-  letterSpacing: '0.04em',
-  textTransform: 'uppercase',
+  letterSpacing: '0.02em',
   width: 'fit-content'
 });
 
 const HeroTitle = styled('h2', {
   fontFamily: '$display',
-  fontSize: '3.1rem',
+  fontSize: '2.5rem',
   fontWeight: 600,
   color: '$textPrimary',
   letterSpacing: '-0.02em',
-  lineHeight: 1.15
+  lineHeight: 1.2
 });
 
 const HeroSub = styled('p', {
-  fontSize: '1.08rem',
+  fontSize: '1.05rem',
   color: '$textSecondary',
-  maxWidth: '750px',
-  lineHeight: 1.65
+  maxWidth: '820px',
+  lineHeight: 1.6
 });
 
 interface TeacherDashboardProps {
@@ -86,7 +85,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
     setIsProcessing(true);
     setCurrentStepIndex(0);
 
-    // Animate DAG Step 0 -> Step 1
+    // Animate DAG Step 0 -> Step 1 -> Step 2
     const stepInterval = setInterval(() => {
       setCurrentStepIndex(prev => {
         if (prev < 3) return prev + 1;
@@ -119,13 +118,13 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
         setCurrentStepIndex(4); // Live Agent Ready!
         setActiveLesson(data.lesson);
 
-        // Confetti celebration
+        // Google 4-Color Confetti celebration
         try {
           confetti({
             particleCount: 80,
             spread: 70,
             origin: { y: 0.6 },
-            colors: ['#7c9a6d', '#d4b996', '#5f7d52', '#fbf9f4']
+            colors: ['#4285F4', '#EA4335', '#FBBC05', '#34A853']
           });
         } catch (e) {}
       } else {
@@ -142,25 +141,26 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
   return (
     <PageContainer>
       <HeroSection
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={MOTION_TOKENS.smooth}
       >
         <Badge>
-          <Sparkles size={14} /> Autonomous Mindful Pedagogy Engine
+          <Sparkles size={14} color="#1a73e8" />
+          <span>Gemini 2.0 & Google Workspace Ecosystem</span>
         </Badge>
         <HeroTitle>
-          Synthesize Mindful Knowledge into an <em style={{ fontStyle: 'italic', color: '#7c9a6d' }}>Interactive Sanctuary</em>
+          Synthesize Lesson Materials into an <span style={{ color: '#1a73e8' }}>Interactive Socratic Classroom</span>
         </HeroTitle>
         <HeroSub>
-          Upload lesson materials, course notes, or high-level syllabi. Serenity orchestrates Google Search Grounding, Gemini 3 Pro studio visuals, Google Docs & Forms, and spins up a real-time emotionally intelligent Socratic Voice Sanctuary.
+          Upload course notes, syllabi, or textbook chapters. Omni-Teach orchestrates Google Search Grounding, Gemini 3 Pro studio visuals, Google Docs & Forms generation, and deploys a live bidirectional 16kHz Socratic Voice Tutor.
         </HeroSub>
       </HeroSection>
 
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ ...MOTION_TOKENS.smooth, delay: 0.1 }}
+        transition={{ ...MOTION_TOKENS.smooth, delay: 0.08 }}
       >
         <Dropzone onGenerate={handleGenerate} isProcessing={isProcessing} />
       </motion.div>
@@ -190,13 +190,13 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
             transition={MOTION_TOKENS.spatial}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-              <Layers size={20} color="#7c9a6d" />
-              <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.65rem', fontWeight: 600, color: '#2e2a24', margin: 0 }}>
-                Artifact Studio & Educational Sanctuary
+              <Layers size={22} color="#1a73e8" />
+              <h3 style={{ fontFamily: 'Google Sans, Roboto, sans-serif', fontSize: '1.45rem', fontWeight: 600, color: '#202124', margin: 0 }}>
+                Google Workspace Artifact Studio
               </h3>
             </div>
-            <p style={{ color: '#6b6357', fontSize: '0.92rem', marginBottom: '16px' }}>
-              Interactive parallax carousel showcasing the live generated curriculum artifacts. Hover over cards for 3D perspective tilt.
+            <p style={{ color: '#5f6368', fontSize: '0.92rem', marginBottom: '16px' }}>
+              Generated learning artifacts provisioned in Google Drive. Review generated Google Docs, Google Forms quizzes, and launch the real-time Socratic voice classroom.
             </p>
             <ArtifactStudio3D lesson={activeLesson} onLaunchTutor={onLaunchTutor} />
           </motion.div>

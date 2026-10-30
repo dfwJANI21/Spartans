@@ -53,7 +53,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#fbf9f4', color: '#2e2a24' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#f8f9fa', color: '#202124' }}>
       <Navbar
         currentView={currentView}
         onNavigate={(v) => {
