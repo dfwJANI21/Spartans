@@ -5,6 +5,8 @@
 
 const admin = require('firebase-admin');
 const crypto = require('crypto');
+const path = require('path');
+const fs = require('fs');
 
 let db = null;
 let isFirestoreConnected = false;
@@ -16,25 +18,46 @@ try {
 
   if (serviceAccountKey) {
     let serviceAccount;
-    if (serviceAccountKey.startsWith('{')) {
+    if (serviceAccountKey.trim().startsWith('{')) {
       serviceAccount = JSON.parse(serviceAccountKey);
     } else {
-      serviceAccount = require(serviceAccountKey);
+      const resolvedPath = path.isAbsolute(serviceAccountKey)
+        ? serviceAccountKey
+        : path.resolve(process.cwd(), serviceAccountKey);
+      serviceAccount = JSON.parse(fs.readFileSync(resolvedPath, 'utf8'));
     }
 
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      projectId: projectId || serviceAccount.project_id
-    });
-    db = admin.firestore();
+    const credential = (admin.credential && typeof admin.credential.cert === 'function')
+      ? admin.credential.cert(serviceAccount)
+      : admin.cert(serviceAccount);
+
+    const app = admin.getApps().length === 0
+      ? admin.initializeApp({
+          credential,
+          projectId: projectId || serviceAccount.project_id
+        })
+      : admin.getApp();
+
+    db = typeof admin.firestore === 'function'
+      ? admin.firestore()
+      : require('firebase-admin/firestore').getFirestore(app);
     isFirestoreConnected = true;
     console.log('[Firestore] Connected to Google Cloud Firestore via service account.');
   } else if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-    admin.initializeApp({
-      credential: admin.credential.applicationDefault(),
-      projectId: projectId
-    });
-    db = admin.firestore();
+    const credential = (admin.credential && typeof admin.credential.applicationDefault === 'function')
+      ? admin.credential.applicationDefault()
+      : admin.applicationDefault();
+
+    const app = admin.getApps().length === 0
+      ? admin.initializeApp({
+          credential,
+          projectId: projectId
+        })
+      : admin.getApp();
+
+    db = typeof admin.firestore === 'function'
+      ? admin.firestore()
+      : require('firebase-admin/firestore').getFirestore(app);
     isFirestoreConnected = true;
     console.log('[Firestore] Connected via Application Default Credentials.');
   } else {
