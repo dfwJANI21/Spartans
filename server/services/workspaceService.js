@@ -46,7 +46,7 @@ async function orchestrateWorkspaceEcosystem(lessonData) {
   
   if (!auth) {
     console.log('[WorkspaceService] Service account not configured. Returning simulated Google Workspace artifacts.');
-    return generateSimulatedWorkspaceUrls(title);
+    return generateSimulatedWorkspaceUrls(title, lessonData.lessonId);
   }
 
   try {
@@ -200,7 +200,7 @@ async function orchestrateWorkspaceEcosystem(lessonData) {
 
   } catch (err) {
     console.error('[WorkspaceService] Google APIs orchestration error:', err.message);
-    return generateSimulatedWorkspaceUrls(title);
+    return generateSimulatedWorkspaceUrls(title, lessonData.lessonId);
   }
 }
 
@@ -278,18 +278,19 @@ function formatDocBodyText(data) {
 }
 
 /**
- * Returns formatted simulated workspace links for demo reliability
+ * Returns formatted working workspace links for demo and service account fallbacks
  */
-function generateSimulatedWorkspaceUrls(title) {
+function generateSimulatedWorkspaceUrls(title, lessonId) {
   const slug = encodeURIComponent(title.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+  const id = lessonId || slug;
   return {
     success: true,
-    folderId: `sim_folder_${slug}`,
-    folderUrl: `https://drive.google.com/drive/folders/omni-teach-${slug}`,
-    docId: `sim_doc_${slug}`,
-    docUrl: `https://docs.google.com/document/d/omni-teach-${slug}/preview`,
-    formId: `sim_form_${slug}`,
-    formUrl: `https://docs.google.com/forms/d/e/omni-teach-quiz-${slug}/viewform`,
+    folderId: id,
+    folderUrl: `/api/lesson/${id}/drive`,
+    docId: id,
+    docUrl: `/api/lesson/${id}/doc`,
+    formId: id,
+    formUrl: `/api/lesson/${id}/form`,
     liveWorkspace: false
   };
 }
