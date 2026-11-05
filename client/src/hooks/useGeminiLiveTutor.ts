@@ -239,13 +239,20 @@ export function useGeminiLiveTutor({ lessonId, lessonData, apiKey, onSentimentCh
     setStatusText('Connecting to Gemini Multimodal Live API...');
 
     const liveKey = apiKey || (window as any).__OMNI_GEMINI_KEY__ || '';
-    const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=${liveKey}`;
+    const configuredWs = (window as any).__OMNI_WS_ENDPOINT__;
+    const isLiveConfigured = (window as any).__OMNI_LIVE_CONFIGURED__;
+
+    // Use server proxy if no client key is exposed, or connect directly if key is present
+    const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const serverProxyUrl = `${wsProtocol}//${window.location.host}${configuredWs || '/ws/live'}`;
+    const directUrl = liveKey ? `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=${liveKey}` : null;
+    const wsUrl = directUrl || serverProxyUrl;
 
     try {
       await startMicCapture();
 
-      if (!liveKey) {
-        console.log('[GeminiLive] No direct client key supplied. Starting Adaptive Simulation Mode.');
+      if (!liveKey && !isLiveConfigured && !configuredWs) {
+        console.log('[GeminiLive] Neither direct client key nor server live proxy configured. Starting Adaptive Simulation Mode.');
         startSimulatedSession();
         return;
       }

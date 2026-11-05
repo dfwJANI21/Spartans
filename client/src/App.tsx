@@ -38,6 +38,10 @@ export const App: React.FC = () => {
         if (cfg.clientKey) {
           (window as any).__OMNI_GEMINI_KEY__ = cfg.clientKey;
         }
+        if (cfg.wsEndpoint) {
+          (window as any).__OMNI_WS_ENDPOINT__ = cfg.wsEndpoint;
+        }
+        (window as any).__OMNI_LIVE_CONFIGURED__ = !!cfg.geminiLiveConfigured;
       })
       .catch(() => {});
   }, []);
