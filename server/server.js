@@ -16,8 +16,10 @@ const server = http.createServer(app);
 const PORT = process.env.PORT || 3000;
 
 // Security & Parsing Middleware
+// Comma-separated allowlist in ALLOWED_ORIGINS; if unset, only same-origin requests (no CORS headers)
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').map(o => o.trim()).filter(Boolean);
 app.use(cors({
-  origin: '*',
+  origin: allowedOrigins.length ? allowedOrigins : false,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -37,8 +39,9 @@ app.get('/api/config', (req, res) => {
   const hasKey = !!process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key_here';
   res.json({
     geminiLiveConfigured: hasKey,
-    // Return key only if explicitly allowed for direct client-side WS in local hackathon demo
-    clientKey: hasKey ? process.env.GEMINI_API_KEY : null,
+    // The key is NEVER exposed by default. Opt in with ALLOW_CLIENT_KEY=true for local demos only
+    // (anyone who can load the page can read it). For production, proxy the Live WebSocket server-side.
+    clientKey: (hasKey && process.env.ALLOW_CLIENT_KEY === 'true') ? process.env.GEMINI_API_KEY : null,
     wsEndpoint: 'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent'
   });
 });
