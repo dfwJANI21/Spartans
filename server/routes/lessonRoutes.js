@@ -8,6 +8,9 @@ const multer = require('multer');
 const crypto = require('crypto');
 const router = express.Router();
 
+// Escape untrusted text before interpolating into server-rendered HTML (prevents stored XSS)
+const esc = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
 const { generateLessonEcosystem } = require('../services/aiService');
 const { orchestrateWorkspaceEcosystem } = require('../services/workspaceService');
 const { saveLessonPlan, getLessonPlan, logTutorSession, isFirestoreConnected } = require('../services/firestoreService');
@@ -211,8 +214,8 @@ router.get('/lesson/:lessonId/doc', async (req, res) => {
     const { lessonId } = req.params;
     const lesson = await getLessonPlan(lessonId);
 
-    const title = lesson ? (lesson.title || lesson.topic || 'Lesson Document') : 'Lesson Document';
-    const content = lesson ? (lesson.lessonPlan || lesson.content || '') : '';
+    const title = esc(lesson ? (lesson.title || lesson.topic || 'Lesson Document') : 'Lesson Document');
+    const content = esc(lesson ? (lesson.lessonPlan || lesson.content || '') : '');
     const sections = lesson ? (lesson.sections || []) : [];
 
     res.send(`<!DOCTYPE html>
@@ -245,19 +248,19 @@ router.get('/lesson/:lessonId/doc', async (req, res) => {
     <svg width="40" height="40" viewBox="0 0 48 48"><path fill="#2196F3" d="M13 6h16l10 10v26c0 1.1-.9 2-2 2H13c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z"/><path fill="#1565C0" d="M29 6l10 10H29z"/><path fill="#fff" d="M16 22h16v2H16zm0 4h16v2H16zm0 4h12v2H16z"/></svg>
     <div>
       <div class="title">${title}</div>
-      <div class="subtitle">Omni-Teach Live Document • Lesson ID: ${lessonId}</div>
+      <div class="subtitle">Omni-Teach Live Document • Lesson ID: ${esc(lessonId)}</div>
     </div>
   </div>
   <a href="/" class="back-link">← Back to Dashboard</a>
   <div class="doc-container">
     <h1>${title}</h1>
-    ${lesson && lesson.subject ? `<span class="meta-badge">${lesson.subject}</span>` : ''}
-    ${lesson && lesson.grade ? `<span class="meta-badge">${lesson.grade}</span>` : ''}
+    ${lesson && lesson.subject ? `<span class="meta-badge">${esc(lesson.subject)}</span>` : ''}
+    ${lesson && lesson.grade ? `<span class="meta-badge">${esc(lesson.grade)}</span>` : ''}
     ${content ? `<div>${content.replace(/\n/g, '<br>')}</div>` : ''}
     ${sections.length > 0 ? sections.map((s, i) => `
-      <h2>${s.title || 'Section ' + (i + 1)}</h2>
+      <h2>${esc(s.title || 'Section ' + (i + 1))}</h2>
       <div class="section-card">
-        <p>${(s.content || s.explanation || JSON.stringify(s)).replace(/\n/g, '<br>')}</p>
+        <p>${esc(s.content || s.explanation || JSON.stringify(s)).replace(/\n/g, '<br>')}</p>
       </div>
     `).join('') : ''}
     ${!content && sections.length === 0 ? '<p style="color:#5f6368;font-style:italic;">No document content available yet. Generate a lesson first.</p>' : ''}
@@ -279,7 +282,7 @@ router.get('/lesson/:lessonId/form', async (req, res) => {
     const { lessonId } = req.params;
     const lesson = await getLessonPlan(lessonId);
 
-    const title = lesson ? (lesson.title || lesson.topic || 'Assessment') : 'Assessment';
+    const title = esc(lesson ? (lesson.title || lesson.topic || 'Assessment') : 'Assessment');
     const questions = lesson ? (lesson.assessmentQuestions || lesson.questions || []) : [];
 
     res.send(`<!DOCTYPE html>
@@ -312,15 +315,15 @@ router.get('/lesson/:lessonId/form', async (req, res) => {
   <a href="/" class="back-link">← Back to Dashboard</a>
   <div class="form-header">
     <h1>📝 ${title} — Assessment</h1>
-    <p>Lesson ID: ${lessonId} • Auto-generated quiz from Omni-Teach Live</p>
+    <p>Lesson ID: ${esc(lessonId)} • Auto-generated quiz from Omni-Teach Live</p>
   </div>
   ${questions.length > 0 ? questions.map((q, i) => `
     <div class="form-question">
-      <div class="q-text"><span class="q-number">Q${i + 1}.</span> ${q.question || q.text || q}</div>
+      <div class="q-text"><span class="q-number">Q${i + 1}.</span> ${esc(q.question || q.text || q)}</div>
       ${(q.options || q.choices || ['Option A', 'Option B', 'Option C', 'Option D']).map((opt, j) => `
         <div class="option">
           <input type="radio" name="q${i}" id="q${i}_${j}">
-          <label for="q${i}_${j}">${opt}</label>
+          <label for="q${i}_${j}">${esc(opt)}</label>
         </div>
       `).join('')}
     </div>
@@ -347,7 +350,7 @@ router.get('/lesson/:lessonId/drive', async (req, res) => {
     const { lessonId } = req.params;
     const lesson = await getLessonPlan(lessonId);
 
-    const title = lesson ? (lesson.title || lesson.topic || 'Lesson Files') : 'Lesson Files';
+    const title = esc(lesson ? (lesson.title || lesson.topic || 'Lesson Files') : 'Lesson Files');
 
     res.send(`<!DOCTYPE html>
 <html lang="en">
@@ -389,7 +392,7 @@ router.get('/lesson/:lessonId/drive', async (req, res) => {
       <a href="/">My Drive</a> › <a href="#">Omni-Teach Live</a> › ${title}
     </div>
     <div class="file-grid">
-      <a href="/api/lesson/${lessonId}/doc" style="text-decoration:none;color:inherit;">
+      <a href="/api/lesson/${encodeURIComponent(lessonId)}/doc" style="text-decoration:none;color:inherit;">
         <div class="file-card">
           <div class="file-thumb doc">📄</div>
           <div class="file-info">
@@ -398,7 +401,7 @@ router.get('/lesson/:lessonId/drive', async (req, res) => {
           </div>
         </div>
       </a>
-      <a href="/api/lesson/${lessonId}/form" style="text-decoration:none;color:inherit;">
+      <a href="/api/lesson/${encodeURIComponent(lessonId)}/form" style="text-decoration:none;color:inherit;">
         <div class="file-card">
           <div class="file-thumb form">📝</div>
           <div class="file-info">
