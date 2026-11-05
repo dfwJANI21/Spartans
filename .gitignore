@@ -1,9 +1,5 @@
-node_modules/
+node_modules
 .env
-*.log
-.DS_Store
 serviceAccount.json
-*serviceAccount*.json
-*-key.json
-*.key.json
 test-generate.js
+.lessons-cache.json

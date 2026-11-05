@@ -70,6 +70,32 @@ try {
 
 // Resilient in-memory storage fallback for demo and hackathon zero-config runs
 const memoryStore = new Map();
+const LOCAL_CACHE_FILE = path.resolve(process.cwd(), '.lessons-cache.json');
+
+// Initialize memoryStore from local disk cache if available
+try {
+  if (fs.existsSync(LOCAL_CACHE_FILE)) {
+    const cachedData = JSON.parse(fs.readFileSync(LOCAL_CACHE_FILE, 'utf8'));
+    for (const [id, rec] of Object.entries(cachedData)) {
+      memoryStore.set(id, rec);
+    }
+    console.log(`[MemoryStore] Restored ${memoryStore.size} cached lessons from disk.`);
+  }
+} catch (e) {
+  console.warn('[MemoryStore] Could not load disk cache:', e.message);
+}
+
+function persistCacheToDisk() {
+  try {
+    const obj = {};
+    for (const [k, v] of memoryStore.entries()) {
+      obj[k] = v;
+    }
+    fs.writeFileSync(LOCAL_CACHE_FILE, JSON.stringify(obj, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('[MemoryStore] Disk cache save warning:', e.message);
+  }
+}
 
 /**
  * Save a generated lesson ecosystem to Firestore
@@ -88,17 +114,17 @@ async function saveLessonPlan(lessonData) {
     status: 'ACTIVE'
   };
 
+  // Always save to memory cache and persist to disk for zero-latency lookups
+  memoryStore.set(lessonId, record);
+  persistCacheToDisk();
+
   if (isFirestoreConnected && db) {
     try {
       await db.collection('lessons').doc(lessonId).set(record);
       console.log(`[Firestore] Lesson stored in collection 'lessons': ${lessonId}`);
     } catch (err) {
-      console.error('[Firestore] Write error, saving to memory fallback:', err.message);
-      memoryStore.set(lessonId, record);
+      console.warn('[Firestore] Write warning (saved to memory and disk cache):', err.message);
     }
-  } else {
-    memoryStore.set(lessonId, record);
-    console.log(`[MemoryStore] Stored lesson ${lessonId} (total cached: ${memoryStore.size})`);
   }
 
   return lessonId;
@@ -112,20 +138,24 @@ async function saveLessonPlan(lessonData) {
 async function getLessonPlan(lessonId) {
   if (!lessonId) return null;
 
+  // 1. Check local high-speed memory cache first
+  if (memoryStore.has(lessonId)) {
+    return memoryStore.get(lessonId);
+  }
+
+  // 2. Query Firestore if connected
   if (isFirestoreConnected && db) {
     try {
       const doc = await db.collection('lessons').doc(lessonId).get();
       if (doc.exists) {
-        return doc.data();
+        const data = doc.data();
+        memoryStore.set(lessonId, data);
+        persistCacheToDisk();
+        return data;
       }
     } catch (err) {
       console.error(`[Firestore] Read error for ${lessonId}:`, err.message);
     }
-  }
-
-  // Check fallback memory cache
-  if (memoryStore.has(lessonId)) {
-    return memoryStore.get(lessonId);
   }
 
   return null;
