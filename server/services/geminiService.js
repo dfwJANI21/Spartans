@@ -23,19 +23,10 @@ async function generateLessonPlan({ subject, topic, grade, duration, difficulty,
     
     // Model fallback list for maximum compatibility across Gemini API keys
     const modelCandidates = [
-      'gemini-3.8-flash',
-      'gemini-flash-latest',
-      'gemini-pro-latest',
-      'gemini-3.6-flash',
-      'gemini-1.5-flash-8b',
-      'gemini-1.5-flash-latest',
-      'gemini-1.5-pro-latest',
-      'gemini-2.0-flash-exp',
       'gemini-2.5-flash',
-      'gemini-2.0-flash',
-      'gemini-1.5-flash',
-      'gemini-1.5-pro',
-      'gemini-pro'
+      'gemini-flash-latest',
+      'gemini-2.5-flash-lite',
+      'gemini-pro-latest'
     ];
     let responseText = '';
     let lastError = null;

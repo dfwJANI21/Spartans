@@ -95,9 +95,9 @@ You MUST respond strictly with valid JSON conforming to this structure:
       console.log('[AIService] Querying Gemini model with Google Search Retrieval grounding...');
       
       const candidateModels = [
-        'gemini-3.8-flash',
-        'gemini-flash-latest',
         'gemini-2.5-flash',
+        'gemini-flash-latest',
+        'gemini-2.5-flash-lite',
         'gemini-pro-latest'
       ];
 

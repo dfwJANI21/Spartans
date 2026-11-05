@@ -31,12 +31,13 @@ try {
       ? admin.credential.cert(serviceAccount)
       : admin.cert(serviceAccount);
 
-    const app = admin.getApps().length === 0
+    const apps = typeof admin.getApps === 'function' ? admin.getApps() : (admin.apps || []);
+    const app = apps.length === 0
       ? admin.initializeApp({
           credential,
           projectId: projectId || serviceAccount.project_id
         })
-      : admin.getApp();
+      : (typeof admin.getApp === 'function' ? admin.getApp() : admin.app());
 
     db = typeof admin.firestore === 'function'
       ? admin.firestore()
